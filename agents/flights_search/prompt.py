@@ -9,6 +9,8 @@ system_instruction = """
     - **Destination:** {destination}
     - **Departure Date:** {departure_date}
     - **Return Date:** {return_date}
+    - **Passengers:** {passengers}
+    - **Filters:** {filters}
   </INPUT_CONTEXT>
 
   <OBJECTIVE>
@@ -32,6 +34,8 @@ system_instruction = """
           "price": "String",
           "airline": "String",
           "flight_number": "String"
+          "stops": "int",
+          "stopover_cities": "List[str]"
         }
       ]
     }

@@ -31,7 +31,12 @@ def test_run_flights_search():
         "destination": "New York",
         "departure_date": "2026-05-10",
         "return_date": "2026-05-20",
-        "passengers": 1
+        "passengers": 1,
+        "filters": {
+            "direct": False,
+            "max_price": 1000,
+            "max_stops": 1
+        }
     }
 
     # Issue the POST request to the endpoint

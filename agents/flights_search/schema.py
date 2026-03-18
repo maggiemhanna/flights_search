@@ -5,6 +5,18 @@ class Filters(BaseModel):
     """
     The structure for the user's initial filters.
     """
+    direct: bool = Field(
+        ..., 
+        description="Whether the flight should be direct."
+    )
+    max_price: int = Field(
+        ..., 
+        description="The maximum price of the flight."
+    )
+    max_stops: int = Field(
+        ..., 
+        description="The maximum number of stops on the flight."
+    )    
 
 
 class FlightsSearchInput(BaseModel):
@@ -26,6 +38,14 @@ class FlightsSearchInput(BaseModel):
     return_date: str = Field(
         ..., 
         description="The return date for the flight search."
+    )
+    passengers: int = Field(
+        ..., 
+        description="The number of passengers for the flight search."
+    )
+    filters: Filters = Field(
+        ..., 
+        description="The filters for the flight search."
     )
     
 class Flight(BaseModel):
@@ -73,7 +93,14 @@ class Flight(BaseModel):
         ..., 
         description="The flight number of the flight."
     )
-    
+    stops: int = Field(
+        ..., 
+        description="The number of stops on the flight."
+    )
+    stopover_cities: List[str] = Field(
+        ..., 
+        description="The cities where the flight stops."
+    )
 
 class FlightsSearchOutput(BaseModel):
     """
