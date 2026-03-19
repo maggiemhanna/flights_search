@@ -15,6 +15,8 @@ system_instruction = """
 
   <OBJECTIVE>
     Your goal is to generate a list of 50 flights that match the user's input.
+    Make the flights realistic and diverse, including different airlines, flight numbers, departure and arrival times, and prices.
+    Include a variety of stops and stopover cities, as well as direct flights.
   </OBJECTIVE>
 
   <OUTPUT_SCHEMA>
