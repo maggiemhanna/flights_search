@@ -1,0 +1,1680 @@
+[
+    {
+        "user_message": "I want to fly with Air France.",
+        "conversational_history": [],
+        "flights_input": [
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:00",
+                "arrival_time": "14:30",
+                "return_time": "16:00",
+                "return_arrival_time": "06:00",
+                "price": "$850",
+                "airline": "Air France",
+                "flight_number": "AF006",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:00",
+                "arrival_time": "15:45",
+                "return_time": "17:00",
+                "return_arrival_time": "07:30",
+                "price": "$920",
+                "airline": "British Airways",
+                "flight_number": "BA172",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:30",
+                "arrival_time": "17:00",
+                "return_time": "18:30",
+                "return_arrival_time": "08:45",
+                "price": "$780",
+                "airline": "KLM",
+                "flight_number": "KL643",
+                "stops": 1,
+                "stopover_cities": [
+                    "Amsterdam"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:00",
+                "arrival_time": "17:15",
+                "return_time": "19:00",
+                "return_arrival_time": "09:15",
+                "price": "$890",
+                "airline": "Lufthansa",
+                "flight_number": "LH404",
+                "stops": 1,
+                "stopover_cities": [
+                    "Frankfurt"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:00",
+                "arrival_time": "18:30",
+                "return_time": "20:00",
+                "return_arrival_time": "10:00",
+                "price": "$950",
+                "airline": "United Airlines",
+                "flight_number": "UA997",
+                "stops": 1,
+                "stopover_cities": [
+                    "Washington D.C."
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:00",
+                "arrival_time": "19:45",
+                "return_time": "21:00",
+                "return_arrival_time": "11:30",
+                "price": "$810",
+                "airline": "Delta Airlines",
+                "flight_number": "DL262",
+                "stops": 1,
+                "stopover_cities": [
+                    "Atlanta"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:00",
+                "arrival_time": "20:30",
+                "return_time": "22:00",
+                "return_arrival_time": "12:00",
+                "price": "$980",
+                "airline": "American Airlines",
+                "flight_number": "AA120",
+                "stops": 1,
+                "stopover_cities": [
+                    "Philadelphia"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:30",
+                "arrival_time": "15:00",
+                "return_time": "16:30",
+                "return_arrival_time": "06:45",
+                "price": "$870",
+                "airline": "Swiss International Air Lines",
+                "flight_number": "LX016",
+                "stops": 1,
+                "stopover_cities": [
+                    "Zurich"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:30",
+                "arrival_time": "16:15",
+                "return_time": "17:30",
+                "return_arrival_time": "07:15",
+                "price": "$930",
+                "airline": "Aer Lingus",
+                "flight_number": "EI104",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:00",
+                "arrival_time": "16:45",
+                "return_time": "18:00",
+                "return_arrival_time": "08:00",
+                "price": "$790",
+                "airline": "Virgin Atlantic",
+                "flight_number": "VS003",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:30",
+                "arrival_time": "18:00",
+                "return_time": "19:30",
+                "return_arrival_time": "09:30",
+                "price": "$900",
+                "airline": "Air Canada",
+                "flight_number": "AC871",
+                "stops": 1,
+                "stopover_cities": [
+                    "Montreal"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:30",
+                "arrival_time": "19:00",
+                "return_time": "20:30",
+                "return_arrival_time": "10:30",
+                "price": "$960",
+                "airline": "SAS",
+                "flight_number": "SK903",
+                "stops": 1,
+                "stopover_cities": [
+                    "Copenhagen"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:30",
+                "arrival_time": "20:15",
+                "return_time": "21:30",
+                "return_arrival_time": "11:00",
+                "price": "$820",
+                "airline": "TAP Air Portugal",
+                "flight_number": "TP201",
+                "stops": 1,
+                "stopover_cities": [
+                    "Lisbon"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:30",
+                "arrival_time": "21:00",
+                "return_time": "22:30",
+                "return_arrival_time": "12:30",
+                "price": "$990",
+                "airline": "Iberia",
+                "flight_number": "IB625",
+                "stops": 1,
+                "stopover_cities": [
+                    "Madrid"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "07:30",
+                "arrival_time": "14:00",
+                "return_time": "15:30",
+                "return_arrival_time": "05:30",
+                "price": "$840",
+                "airline": "Finnair",
+                "flight_number": "AY005",
+                "stops": 1,
+                "stopover_cities": [
+                    "Helsinki"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:15",
+                "arrival_time": "15:30",
+                "return_time": "16:45",
+                "return_arrival_time": "07:00",
+                "price": "$910",
+                "airline": "Brussels Airlines",
+                "flight_number": "SN501",
+                "stops": 1,
+                "stopover_cities": [
+                    "Brussels"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:45",
+                "arrival_time": "17:15",
+                "return_time": "18:45",
+                "return_arrival_time": "09:00",
+                "price": "$770",
+                "airline": "LOT Polish Airlines",
+                "flight_number": "LO007",
+                "stops": 1,
+                "stopover_cities": [
+                    "Warsaw"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:45",
+                "arrival_time": "18:15",
+                "return_time": "19:45",
+                "return_arrival_time": "09:45",
+                "price": "$880",
+                "airline": "Turkish Airlines",
+                "flight_number": "TK001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Istanbul"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:45",
+                "arrival_time": "19:15",
+                "return_time": "20:45",
+                "return_arrival_time": "10:45",
+                "price": "$940",
+                "airline": "Etihad Airways",
+                "flight_number": "EY001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Abu Dhabi"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:45",
+                "arrival_time": "20:45",
+                "return_time": "21:45",
+                "return_arrival_time": "11:15",
+                "price": "$800",
+                "airline": "Emirates",
+                "flight_number": "EK001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dubai"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:45",
+                "arrival_time": "21:15",
+                "return_time": "22:45",
+                "return_arrival_time": "12:45",
+                "price": "$970",
+                "airline": "Qatar Airways",
+                "flight_number": "QR001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Doha"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:15",
+                "arrival_time": "14:45",
+                "return_time": "16:15",
+                "return_arrival_time": "06:15",
+                "price": "$860",
+                "airline": "Air France",
+                "flight_number": "AF008",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:15",
+                "arrival_time": "16:00",
+                "return_time": "17:15",
+                "return_arrival_time": "07:45",
+                "price": "$925",
+                "airline": "British Airways",
+                "flight_number": "BA174",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:45",
+                "arrival_time": "17:15",
+                "return_time": "18:45",
+                "return_arrival_time": "08:30",
+                "price": "$795",
+                "airline": "KLM",
+                "flight_number": "KL645",
+                "stops": 1,
+                "stopover_cities": [
+                    "Amsterdam"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:15",
+                "arrival_time": "17:30",
+                "return_time": "19:15",
+                "return_arrival_time": "09:00",
+                "price": "$895",
+                "airline": "Lufthansa",
+                "flight_number": "LH406",
+                "stops": 1,
+                "stopover_cities": [
+                    "Frankfurt"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:15",
+                "arrival_time": "18:45",
+                "return_time": "20:15",
+                "return_arrival_time": "10:15",
+                "price": "$955",
+                "airline": "United Airlines",
+                "flight_number": "UA999",
+                "stops": 1,
+                "stopover_cities": [
+                    "Washington D.C."
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:15",
+                "arrival_time": "20:00",
+                "return_time": "21:15",
+                "return_arrival_time": "11:45",
+                "price": "$815",
+                "airline": "Delta Airlines",
+                "flight_number": "DL264",
+                "stops": 1,
+                "stopover_cities": [
+                    "Atlanta"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:15",
+                "arrival_time": "20:45",
+                "return_time": "22:15",
+                "return_arrival_time": "12:15",
+                "price": "$985",
+                "airline": "American Airlines",
+                "flight_number": "AA122",
+                "stops": 1,
+                "stopover_cities": [
+                    "Philadelphia"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:45",
+                "arrival_time": "15:15",
+                "return_time": "16:45",
+                "return_arrival_time": "06:30",
+                "price": "$875",
+                "airline": "Swiss International Air Lines",
+                "flight_number": "LX018",
+                "stops": 1,
+                "stopover_cities": [
+                    "Zurich"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:45",
+                "arrival_time": "16:30",
+                "return_time": "17:45",
+                "return_arrival_time": "07:00",
+                "price": "$935",
+                "airline": "Aer Lingus",
+                "flight_number": "EI106",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:15",
+                "arrival_time": "17:00",
+                "return_time": "18:15",
+                "return_arrival_time": "08:15",
+                "price": "$785",
+                "airline": "Virgin Atlantic",
+                "flight_number": "VS005",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:45",
+                "arrival_time": "18:15",
+                "return_time": "19:45",
+                "return_arrival_time": "09:15",
+                "price": "$905",
+                "airline": "Air Canada",
+                "flight_number": "AC873",
+                "stops": 1,
+                "stopover_cities": [
+                    "Montreal"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:45",
+                "arrival_time": "19:15",
+                "return_time": "20:45",
+                "return_arrival_time": "10:15",
+                "price": "$965",
+                "airline": "SAS",
+                "flight_number": "SK905",
+                "stops": 1,
+                "stopover_cities": [
+                    "Copenhagen"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:45",
+                "arrival_time": "20:30",
+                "return_time": "21:45",
+                "return_arrival_time": "11:15",
+                "price": "$825",
+                "airline": "TAP Air Portugal",
+                "flight_number": "TP203",
+                "stops": 1,
+                "stopover_cities": [
+                    "Lisbon"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:45",
+                "arrival_time": "21:15",
+                "return_time": "22:45",
+                "return_arrival_time": "12:15",
+                "price": "$995",
+                "airline": "Iberia",
+                "flight_number": "IB627",
+                "stops": 1,
+                "stopover_cities": [
+                    "Madrid"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "07:45",
+                "arrival_time": "14:15",
+                "return_time": "15:45",
+                "return_arrival_time": "05:45",
+                "price": "$845",
+                "airline": "Finnair",
+                "flight_number": "AY007",
+                "stops": 1,
+                "stopover_cities": [
+                    "Helsinki"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:30",
+                "arrival_time": "15:45",
+                "return_time": "17:00",
+                "return_arrival_time": "07:15",
+                "price": "$915",
+                "airline": "Brussels Airlines",
+                "flight_number": "SN503",
+                "stops": 1,
+                "stopover_cities": [
+                    "Brussels"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:00",
+                "arrival_time": "17:30",
+                "return_time": "19:00",
+                "return_arrival_time": "08:45",
+                "price": "$775",
+                "airline": "LOT Polish Airlines",
+                "flight_number": "LO009",
+                "stops": 1,
+                "stopover_cities": [
+                    "Warsaw"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:00",
+                "arrival_time": "18:30",
+                "return_time": "20:00",
+                "return_arrival_time": "09:30",
+                "price": "$885",
+                "airline": "Turkish Airlines",
+                "flight_number": "TK003",
+                "stops": 1,
+                "stopover_cities": [
+                    "Istanbul"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:00",
+                "arrival_time": "19:30",
+                "return_time": "21:00",
+                "return_arrival_time": "10:30",
+                "price": "$945",
+                "airline": "Etihad Airways",
+                "flight_number": "EY003",
+                "stops": 1,
+                "stopover_cities": [
+                    "Abu Dhabi"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:00",
+                "arrival_time": "21:00",
+                "return_time": "22:00",
+                "return_arrival_time": "11:00",
+                "price": "$805",
+                "airline": "Emirates",
+                "flight_number": "EK003",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dubai"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "15:00",
+                "arrival_time": "21:30",
+                "return_time": "23:00",
+                "return_arrival_time": "12:30",
+                "price": "$975",
+                "airline": "Qatar Airways",
+                "flight_number": "QR003",
+                "stops": 1,
+                "stopover_cities": [
+                    "Doha"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:00",
+                "arrival_time": "14:30",
+                "return_time": "16:00",
+                "return_arrival_time": "06:00",
+                "price": "$855",
+                "airline": "Air France",
+                "flight_number": "AF010",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:00",
+                "arrival_time": "15:45",
+                "return_time": "17:00",
+                "return_arrival_time": "07:30",
+                "price": "$920",
+                "airline": "British Airways",
+                "flight_number": "BA176",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:30",
+                "arrival_time": "17:00",
+                "return_time": "18:30",
+                "return_arrival_time": "08:45",
+                "price": "$780",
+                "airline": "KLM",
+                "flight_number": "KL647",
+                "stops": 1,
+                "stopover_cities": [
+                    "Amsterdam"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:00",
+                "arrival_time": "17:15",
+                "return_time": "19:00",
+                "return_arrival_time": "09:15",
+                "price": "$890",
+                "airline": "Lufthansa",
+                "flight_number": "LH408",
+                "stops": 1,
+                "stopover_cities": [
+                    "Frankfurt"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:00",
+                "arrival_time": "18:30",
+                "return_time": "20:00",
+                "return_arrival_time": "10:00",
+                "price": "$950",
+                "airline": "United Airlines",
+                "flight_number": "UA1001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Washington D.C."
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:00",
+                "arrival_time": "19:45",
+                "return_time": "21:00",
+                "return_arrival_time": "11:30",
+                "price": "$810",
+                "airline": "Delta Airlines",
+                "flight_number": "DL266",
+                "stops": 1,
+                "stopover_cities": [
+                    "Atlanta"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:00",
+                "arrival_time": "20:30",
+                "return_time": "22:00",
+                "return_arrival_time": "12:00",
+                "price": "$980",
+                "airline": "American Airlines",
+                "flight_number": "AA124",
+                "stops": 1,
+                "stopover_cities": [
+                    "Philadelphia"
+                ]
+            }
+        ]
+    },
+    {
+        "user_message": "I want to fly with flights that have good wifi.",
+        "conversational_history": [],
+        "flights_input": [
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:00",
+                "arrival_time": "14:30",
+                "return_time": "16:00",
+                "return_arrival_time": "06:00",
+                "price": "$850",
+                "airline": "Air France",
+                "flight_number": "AF006",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:00",
+                "arrival_time": "15:45",
+                "return_time": "17:00",
+                "return_arrival_time": "07:30",
+                "price": "$920",
+                "airline": "British Airways",
+                "flight_number": "BA172",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:30",
+                "arrival_time": "17:00",
+                "return_time": "18:30",
+                "return_arrival_time": "08:45",
+                "price": "$780",
+                "airline": "KLM",
+                "flight_number": "KL643",
+                "stops": 1,
+                "stopover_cities": [
+                    "Amsterdam"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:00",
+                "arrival_time": "17:15",
+                "return_time": "19:00",
+                "return_arrival_time": "09:15",
+                "price": "$890",
+                "airline": "Lufthansa",
+                "flight_number": "LH404",
+                "stops": 1,
+                "stopover_cities": [
+                    "Frankfurt"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:00",
+                "arrival_time": "18:30",
+                "return_time": "20:00",
+                "return_arrival_time": "10:00",
+                "price": "$950",
+                "airline": "United Airlines",
+                "flight_number": "UA997",
+                "stops": 1,
+                "stopover_cities": [
+                    "Washington D.C."
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:00",
+                "arrival_time": "19:45",
+                "return_time": "21:00",
+                "return_arrival_time": "11:30",
+                "price": "$810",
+                "airline": "Delta Airlines",
+                "flight_number": "DL262",
+                "stops": 1,
+                "stopover_cities": [
+                    "Atlanta"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:00",
+                "arrival_time": "20:30",
+                "return_time": "22:00",
+                "return_arrival_time": "12:00",
+                "price": "$980",
+                "airline": "American Airlines",
+                "flight_number": "AA120",
+                "stops": 1,
+                "stopover_cities": [
+                    "Philadelphia"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:30",
+                "arrival_time": "15:00",
+                "return_time": "16:30",
+                "return_arrival_time": "06:45",
+                "price": "$870",
+                "airline": "Swiss International Air Lines",
+                "flight_number": "LX016",
+                "stops": 1,
+                "stopover_cities": [
+                    "Zurich"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:30",
+                "arrival_time": "16:15",
+                "return_time": "17:30",
+                "return_arrival_time": "07:15",
+                "price": "$930",
+                "airline": "Aer Lingus",
+                "flight_number": "EI104",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:00",
+                "arrival_time": "16:45",
+                "return_time": "18:00",
+                "return_arrival_time": "08:00",
+                "price": "$790",
+                "airline": "Virgin Atlantic",
+                "flight_number": "VS003",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:30",
+                "arrival_time": "18:00",
+                "return_time": "19:30",
+                "return_arrival_time": "09:30",
+                "price": "$900",
+                "airline": "Air Canada",
+                "flight_number": "AC871",
+                "stops": 1,
+                "stopover_cities": [
+                    "Montreal"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:30",
+                "arrival_time": "19:00",
+                "return_time": "20:30",
+                "return_arrival_time": "10:30",
+                "price": "$960",
+                "airline": "SAS",
+                "flight_number": "SK903",
+                "stops": 1,
+                "stopover_cities": [
+                    "Copenhagen"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:30",
+                "arrival_time": "20:15",
+                "return_time": "21:30",
+                "return_arrival_time": "11:00",
+                "price": "$820",
+                "airline": "TAP Air Portugal",
+                "flight_number": "TP201",
+                "stops": 1,
+                "stopover_cities": [
+                    "Lisbon"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:30",
+                "arrival_time": "21:00",
+                "return_time": "22:30",
+                "return_arrival_time": "12:30",
+                "price": "$990",
+                "airline": "Iberia",
+                "flight_number": "IB625",
+                "stops": 1,
+                "stopover_cities": [
+                    "Madrid"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "07:30",
+                "arrival_time": "14:00",
+                "return_time": "15:30",
+                "return_arrival_time": "05:30",
+                "price": "$840",
+                "airline": "Finnair",
+                "flight_number": "AY005",
+                "stops": 1,
+                "stopover_cities": [
+                    "Helsinki"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:15",
+                "arrival_time": "15:30",
+                "return_time": "16:45",
+                "return_arrival_time": "07:00",
+                "price": "$910",
+                "airline": "Brussels Airlines",
+                "flight_number": "SN501",
+                "stops": 1,
+                "stopover_cities": [
+                    "Brussels"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:45",
+                "arrival_time": "17:15",
+                "return_time": "18:45",
+                "return_arrival_time": "09:00",
+                "price": "$770",
+                "airline": "LOT Polish Airlines",
+                "flight_number": "LO007",
+                "stops": 1,
+                "stopover_cities": [
+                    "Warsaw"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:45",
+                "arrival_time": "18:15",
+                "return_time": "19:45",
+                "return_arrival_time": "09:45",
+                "price": "$880",
+                "airline": "Turkish Airlines",
+                "flight_number": "TK001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Istanbul"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:45",
+                "arrival_time": "19:15",
+                "return_time": "20:45",
+                "return_arrival_time": "10:45",
+                "price": "$940",
+                "airline": "Etihad Airways",
+                "flight_number": "EY001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Abu Dhabi"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:45",
+                "arrival_time": "20:45",
+                "return_time": "21:45",
+                "return_arrival_time": "11:15",
+                "price": "$800",
+                "airline": "Emirates",
+                "flight_number": "EK001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dubai"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:45",
+                "arrival_time": "21:15",
+                "return_time": "22:45",
+                "return_arrival_time": "12:45",
+                "price": "$970",
+                "airline": "Qatar Airways",
+                "flight_number": "QR001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Doha"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:15",
+                "arrival_time": "14:45",
+                "return_time": "16:15",
+                "return_arrival_time": "06:15",
+                "price": "$860",
+                "airline": "Air France",
+                "flight_number": "AF008",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:15",
+                "arrival_time": "16:00",
+                "return_time": "17:15",
+                "return_arrival_time": "07:45",
+                "price": "$925",
+                "airline": "British Airways",
+                "flight_number": "BA174",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:45",
+                "arrival_time": "17:15",
+                "return_time": "18:45",
+                "return_arrival_time": "08:30",
+                "price": "$795",
+                "airline": "KLM",
+                "flight_number": "KL645",
+                "stops": 1,
+                "stopover_cities": [
+                    "Amsterdam"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:15",
+                "arrival_time": "17:30",
+                "return_time": "19:15",
+                "return_arrival_time": "09:00",
+                "price": "$895",
+                "airline": "Lufthansa",
+                "flight_number": "LH406",
+                "stops": 1,
+                "stopover_cities": [
+                    "Frankfurt"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:15",
+                "arrival_time": "18:45",
+                "return_time": "20:15",
+                "return_arrival_time": "10:15",
+                "price": "$955",
+                "airline": "United Airlines",
+                "flight_number": "UA999",
+                "stops": 1,
+                "stopover_cities": [
+                    "Washington D.C."
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:15",
+                "arrival_time": "20:00",
+                "return_time": "21:15",
+                "return_arrival_time": "11:45",
+                "price": "$815",
+                "airline": "Delta Airlines",
+                "flight_number": "DL264",
+                "stops": 1,
+                "stopover_cities": [
+                    "Atlanta"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:15",
+                "arrival_time": "20:45",
+                "return_time": "22:15",
+                "return_arrival_time": "12:15",
+                "price": "$985",
+                "airline": "American Airlines",
+                "flight_number": "AA122",
+                "stops": 1,
+                "stopover_cities": [
+                    "Philadelphia"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:45",
+                "arrival_time": "15:15",
+                "return_time": "16:45",
+                "return_arrival_time": "06:30",
+                "price": "$875",
+                "airline": "Swiss International Air Lines",
+                "flight_number": "LX018",
+                "stops": 1,
+                "stopover_cities": [
+                    "Zurich"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:45",
+                "arrival_time": "16:30",
+                "return_time": "17:45",
+                "return_arrival_time": "07:00",
+                "price": "$935",
+                "airline": "Aer Lingus",
+                "flight_number": "EI106",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:15",
+                "arrival_time": "17:00",
+                "return_time": "18:15",
+                "return_arrival_time": "08:15",
+                "price": "$785",
+                "airline": "Virgin Atlantic",
+                "flight_number": "VS005",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:45",
+                "arrival_time": "18:15",
+                "return_time": "19:45",
+                "return_arrival_time": "09:15",
+                "price": "$905",
+                "airline": "Air Canada",
+                "flight_number": "AC873",
+                "stops": 1,
+                "stopover_cities": [
+                    "Montreal"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:45",
+                "arrival_time": "19:15",
+                "return_time": "20:45",
+                "return_arrival_time": "10:15",
+                "price": "$965",
+                "airline": "SAS",
+                "flight_number": "SK905",
+                "stops": 1,
+                "stopover_cities": [
+                    "Copenhagen"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:45",
+                "arrival_time": "20:30",
+                "return_time": "21:45",
+                "return_arrival_time": "11:15",
+                "price": "$825",
+                "airline": "TAP Air Portugal",
+                "flight_number": "TP203",
+                "stops": 1,
+                "stopover_cities": [
+                    "Lisbon"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:45",
+                "arrival_time": "21:15",
+                "return_time": "22:45",
+                "return_arrival_time": "12:15",
+                "price": "$995",
+                "airline": "Iberia",
+                "flight_number": "IB627",
+                "stops": 1,
+                "stopover_cities": [
+                    "Madrid"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "07:45",
+                "arrival_time": "14:15",
+                "return_time": "15:45",
+                "return_arrival_time": "05:45",
+                "price": "$845",
+                "airline": "Finnair",
+                "flight_number": "AY007",
+                "stops": 1,
+                "stopover_cities": [
+                    "Helsinki"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:30",
+                "arrival_time": "15:45",
+                "return_time": "17:00",
+                "return_arrival_time": "07:15",
+                "price": "$915",
+                "airline": "Brussels Airlines",
+                "flight_number": "SN503",
+                "stops": 1,
+                "stopover_cities": [
+                    "Brussels"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:00",
+                "arrival_time": "17:30",
+                "return_time": "19:00",
+                "return_arrival_time": "08:45",
+                "price": "$775",
+                "airline": "LOT Polish Airlines",
+                "flight_number": "LO009",
+                "stops": 1,
+                "stopover_cities": [
+                    "Warsaw"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:00",
+                "arrival_time": "18:30",
+                "return_time": "20:00",
+                "return_arrival_time": "09:30",
+                "price": "$885",
+                "airline": "Turkish Airlines",
+                "flight_number": "TK003",
+                "stops": 1,
+                "stopover_cities": [
+                    "Istanbul"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:00",
+                "arrival_time": "19:30",
+                "return_time": "21:00",
+                "return_arrival_time": "10:30",
+                "price": "$945",
+                "airline": "Etihad Airways",
+                "flight_number": "EY003",
+                "stops": 1,
+                "stopover_cities": [
+                    "Abu Dhabi"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:00",
+                "arrival_time": "21:00",
+                "return_time": "22:00",
+                "return_arrival_time": "11:00",
+                "price": "$805",
+                "airline": "Emirates",
+                "flight_number": "EK003",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dubai"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "15:00",
+                "arrival_time": "21:30",
+                "return_time": "23:00",
+                "return_arrival_time": "12:30",
+                "price": "$975",
+                "airline": "Qatar Airways",
+                "flight_number": "QR003",
+                "stops": 1,
+                "stopover_cities": [
+                    "Doha"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "08:00",
+                "arrival_time": "14:30",
+                "return_time": "16:00",
+                "return_arrival_time": "06:00",
+                "price": "$855",
+                "airline": "Air France",
+                "flight_number": "AF010",
+                "stops": 1,
+                "stopover_cities": [
+                    "Dublin"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "09:00",
+                "arrival_time": "15:45",
+                "return_time": "17:00",
+                "return_arrival_time": "07:30",
+                "price": "$920",
+                "airline": "British Airways",
+                "flight_number": "BA176",
+                "stops": 1,
+                "stopover_cities": [
+                    "London"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "10:30",
+                "arrival_time": "17:00",
+                "return_time": "18:30",
+                "return_arrival_time": "08:45",
+                "price": "$780",
+                "airline": "KLM",
+                "flight_number": "KL647",
+                "stops": 1,
+                "stopover_cities": [
+                    "Amsterdam"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "11:00",
+                "arrival_time": "17:15",
+                "return_time": "19:00",
+                "return_arrival_time": "09:15",
+                "price": "$890",
+                "airline": "Lufthansa",
+                "flight_number": "LH408",
+                "stops": 1,
+                "stopover_cities": [
+                    "Frankfurt"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "12:00",
+                "arrival_time": "18:30",
+                "return_time": "20:00",
+                "return_arrival_time": "10:00",
+                "price": "$950",
+                "airline": "United Airlines",
+                "flight_number": "UA1001",
+                "stops": 1,
+                "stopover_cities": [
+                    "Washington D.C."
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "13:00",
+                "arrival_time": "19:45",
+                "return_time": "21:00",
+                "return_arrival_time": "11:30",
+                "price": "$810",
+                "airline": "Delta Airlines",
+                "flight_number": "DL266",
+                "stops": 1,
+                "stopover_cities": [
+                    "Atlanta"
+                ]
+            },
+            {
+                "origin": "Paris",
+                "destination": "New York",
+                "departure_date": "2026-05-10",
+                "return_date": "2026-05-20",
+                "departure_time": "14:00",
+                "arrival_time": "20:30",
+                "return_time": "22:00",
+                "return_arrival_time": "12:00",
+                "price": "$980",
+                "airline": "American Airlines",
+                "flight_number": "AA124",
+                "stops": 1,
+                "stopover_cities": [
+                    "Philadelphia"
+                ]
+            }
+        ]
+    }
+]
