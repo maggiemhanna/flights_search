@@ -1,0 +1,23 @@
+[
+    {
+        "user_message": "I want to fly with not more than 1 stop",
+        "conversational_history": [
+            "Hello",
+            "Hello, how can I help you?"
+        ],
+        "expected_filter_type": "max_stops",
+        "expected_filter_value": 1
+    },
+    {
+        "user_message": "I want to fly with direct flights only",
+        "conversational_history": [],
+        "expected_filter_type": "direct",
+        "expected_filter_value": 1
+    },
+    {
+        "user_message": "I want to fly with with flights cheaper than 1000",
+        "conversational_history": [],
+        "expected_filter_type": "max_price",
+        "expected_filter_value": 1000
+    }
+]
