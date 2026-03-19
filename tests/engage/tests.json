@@ -1,0 +1,31 @@
+[
+    {
+        "user_message": "I want to fly with not more than 1 stop",
+        "conversational_history": [
+            "Hello",
+            "Hello, how can I help you?"
+        ],
+        "expected_agent_decision": "filter"
+    },
+    {
+        "user_message": "I want to fly with Delta",
+        "conversational_history": [],
+        "expected_agent_decision": "smart_filter"
+    },
+    {
+        "user_message": "I want to go on a sunny vacation but I don't know where",
+        "conversational_history": [
+            "Hello",
+            "Hello, how can I help you?"
+        ],
+        "expected_agent_decision": "inspiration_agent"
+    },
+    {
+        "user_message": "I want to show flights with good wifi",
+        "conversational_history": [
+            "Hello",
+            "Hello, how can I help you?"
+        ],
+        "expected_agent_decision": "smart_filter"
+    }
+]
