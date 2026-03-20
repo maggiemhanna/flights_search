@@ -120,7 +120,7 @@ async def execute_agent_run(user_input: FilterSmartInput) -> List[Dict[str, Any]
                 logger.warning("Agent response text was not valid JSON. Returning raw text.")
                 parsed_responses.append({"raw_text": text_content})
         
-        logger.info(f"--- Agent Response ---\n{format_dict_for_logs(parsed_responses)}")
+        logger.info(f"--- Agent Response ---\n{format_dict_for_logs(parsed_responses, max_len=1000)}")
         return parsed_responses
 
     except Exception as e:
@@ -153,4 +153,4 @@ async def run_filter_smart(user_input: FilterSmartInput) -> Dict[str, Any]:
 # --- Running the Server ---
 if __name__ == "__main__":
     logger.info("Starting Uvicorn server...")
-    uvicorn.run("main:api", host="127.0.0.1", port=8003, reload=False)
+    uvicorn.run(api, host="127.0.0.1", port=8003)
