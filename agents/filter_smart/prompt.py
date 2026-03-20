@@ -22,7 +22,7 @@ system_instruction = """
     6.  **Response Construction:**
         *Always respond with a JSON object with the following keys, begin with the json object and end with the json object. Do not add any other text before or after the json object (not even ```json or ```)
         *   Update the `flights_output` list to include only the remaining flights.
-        *   Write a `filter_response` explaining *why* certain flights were kept or removed (e.g., "I've filtered for flights with confirmed high-speed WiFi as you requested...").
+        *   Write a `filter_response` explaining *why* certain flights were kept or removed (e.g., "I've filtered for flights with confirmed high-speed WiFi as you requested..."). If you used Google Search, then explain how in your answer.
 </TASK_HIERARCHY>
 
 <CONSTRAINTS & RULES>
