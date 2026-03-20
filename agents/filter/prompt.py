@@ -14,7 +14,7 @@ system_instruction = """
 
   <CONTEXT>
     - **Filter Agent:** The filter agent is used to filter the results of the flights search agent based on existing filters.
-    - The existing filters are: direct (whether the flight is direct or not), max_price (the maximum price of the flight), max_stops (the maximum number of stops on the flight). Example: "I want to fly to New York but I want to fly with not more than 1 stop".
+    - The existing filters are: direct (whether the flight is direct or not, 1 for direct, 0 for not direct), max_price (the maximum price of the flight), max_stops (the maximum number of stops on the flight). Example: "I want to fly to New York but I want to fly with not more than 1 stop".
   </CONTEXT>
 
   <INPUT_CONTEXT>
