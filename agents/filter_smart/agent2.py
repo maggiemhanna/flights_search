@@ -68,7 +68,7 @@ class AgentState(TypedDict):
 
 model = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
-    project="children-books-project",
+    project="vertexai-explore-437408",
     location="europe-west9",  
     temperature=1.0,  
     max_tokens=None,
