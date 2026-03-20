@@ -1,20 +1,20 @@
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel, Field
 
 class Filters(BaseModel):
     """
     The structure for the user's initial filters.
     """
-    direct: bool = Field(
-        ..., 
+    direct: Optional[bool] = Field(
+        None, 
         description="Whether the flight should be direct."
     )
-    max_price: int = Field(
-        ..., 
+    max_price: Optional[int] = Field(
+        None, 
         description="The maximum price of the flight."
     )
-    max_stops: int = Field(
-        ..., 
+    max_stops: Optional[int] = Field(
+        None, 
         description="The maximum number of stops on the flight."
     )    
 
