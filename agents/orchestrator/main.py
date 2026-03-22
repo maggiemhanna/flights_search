@@ -37,6 +37,16 @@ api = FastAPI(
     description="API for running the Orchestrator Agent."
 )
 
+from fastapi.middleware.cors import CORSMiddleware
+
+api.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @api.get("/", tags=["Health"])
 async def root() -> Dict[str, str]:
     return {"message": "Orchestrator Agent Service is running. Use the /run-orchestrator endpoint via POST."}
@@ -116,4 +126,4 @@ async def run_orchestrator(user_input: OrchestratorInput) -> Dict[str, Any]:
 # --- Running the Server ---
 if __name__ == "__main__":
     logger.info("Starting Uvicorn server...")
-    uvicorn.run(api, host="127.0.0.1", port=8004)
+    uvicorn.run(api, host="127.0.0.1", port=8005)
