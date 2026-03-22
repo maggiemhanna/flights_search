@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List
 from uuid import uuid4
+import requests
 
 import yaml
 import uvicorn
@@ -42,6 +43,11 @@ def load_env_variables(file_path: Path) -> None:
 # Load the environment variables before initializing the app
 load_env_variables(ENV_FILE_PATH)
 
+def call_json_parser_api(api_inputs):
+    response = requests.post("http://127.0.0.1:8004/run-json-parser", json=api_inputs)
+    return response.json()
+
+
 # --- FastAPI Application ---
 api = FastAPI(
     title="Filter Smart Agent Service",
@@ -52,6 +58,7 @@ import re
 
 def load_json_with_markdown(data):
     # Strip leading/trailing whitespace
+    logger.info(f"--- Raw Data ---\n{format_dict_for_logs(data, max_len=1000)}")
     data = data.strip()
     
     # Regex to find content inside ```json ... ``` or ``` ... ```
@@ -117,8 +124,13 @@ async def execute_agent_run(user_input: FilterSmartInput) -> List[Dict[str, Any]
             try:
                 parsed_responses.append(load_json_with_markdown(text_content))
             except json.JSONDecodeError:
-                logger.warning("Agent response text was not valid JSON. Returning raw text.")
-                parsed_responses.append({"raw_text": text_content})
+                logger.warning("Agent response text was not valid JSON. Calling JSON Parser Agent.")
+                json_parser_state = {
+                    "response_text": text_content,
+                }
+                json_parser_response = call_json_parser_api(json_parser_state) 
+                parsed_responses.append(json_parser_response["results"][0])
+
         
         logger.info(f"--- Agent Response ---\n{format_dict_for_logs(parsed_responses, max_len=1000)}")
         return parsed_responses
