@@ -48,6 +48,16 @@ api = FastAPI(
     description="API for running the Flights Search Agent."
 )
 
+from fastapi.middleware.cors import CORSMiddleware
+
+api.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @api.get("/", tags=["Health"])
 async def root() -> Dict[str, str]:
     return {"message": "Flights Search Agent Service is running. Use the /run-flights-search endpoint via POST."}
