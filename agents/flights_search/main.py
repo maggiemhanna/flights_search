@@ -143,4 +143,4 @@ async def run_flights_search(user_input: FlightsSearchInput) -> Dict[str, Any]:
 # --- Running the Server ---
 if __name__ == "__main__":
     logger.info("Starting Uvicorn server...")
-    uvicorn.run(api, host="127.0.0.1", port=8000)
+    uvicorn.run(api, host="127.0.0.1", port=8006)
