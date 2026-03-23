@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function ChatWidget({ flights, setFlights }) {
+function ChatWidget({ flights, setFlights, setSearchParams }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { sender: 'bot', text: 'Hello! I can help you filter or find flights. Try "only direct flights" or "flights under $500".' }
@@ -56,10 +56,20 @@ function ChatWidget({ flights, setFlights }) {
             // Apply local filter if type and value are provided
             if (result.filter_type && result.filter_value !== undefined) {
               const value = result.filter_value;
+
+              // Update top-level search inputs
+              setSearchParams(prev => {
+                const updates = {};
+                if (result.filter_type === 'price' || result.filter_type === 'max_price') updates.max_price = String(value);
+                if (result.filter_type === 'stops' || result.filter_type === 'max_stops') updates.max_stops = String(value);
+                if (result.filter_type === 'direct') updates.direct = true;
+                return { ...prev, ...updates };
+              });
+
               let filtered = [...flights];
-              if (result.filter_type === 'price') {
+              if (result.filter_type === 'price' || result.filter_type === 'max_price') {
                 filtered = flights.filter(f => parseFloat(f.price.replace('$', '')) <= value);
-              } else if (result.filter_type === 'stops') {
+              } else if (result.filter_type === 'stops' || result.filter_type === 'max_stops') {
                 filtered = flights.filter(f => f.stops <= value);
               } else if (result.filter_type === 'direct') {
                 filtered = flights.filter(f => f.stops === 0);
