@@ -58,7 +58,7 @@ class Flight(BaseModel):
 class FilterSmartInput(BaseModel):
     """Input schema for the Filter Agent."""
     user_message: str = Field(..., description="The message from the user.")
-    conversational_history: List[str] = Field(..., description="The history of the conversation.")
+    conversational_history: List[str] = Field(..., description="The history of the conversation where each string is formatted as 'role: message' (e.g., 'bot: Hello' or 'user: flights under $500').")
     flights_input: List[Flight] = Field(..., description="The flights to filter.")
 
 class FilterSmartOutput(BaseModel):
