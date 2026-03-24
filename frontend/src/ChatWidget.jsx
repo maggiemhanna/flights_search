@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function ChatWidget({ flights, setFlights, searchParams, setSearchParams }) {
+function ChatWidget({ flights, setFlights, searchParams, setSearchParams, fetchFlights }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { sender: 'bot', text: 'Hello! I can help you filter or find flights. Try "only direct flights" or "flights under $500".' }
@@ -55,10 +55,14 @@ function ChatWidget({ flights, setFlights, searchParams, setSearchParams }) {
         const decision = result.agent_decision;
 
         if (result.flights_search_output) {
-          setSearchParams(prev => ({
-            ...prev,
+          const updatedParams = {
+            ...searchParams,
             ...result.flights_search_output
-          }));
+          };
+          setSearchParams(updatedParams);
+          if (decision === 'inspiration_agent' && fetchFlights) {
+            fetchFlights(updatedParams);
+          }
         }
 
         if (decision === 'filter' || decision === 'smart_filter' || decision === 'filter_smart') {
@@ -94,7 +98,12 @@ function ChatWidget({ flights, setFlights, searchParams, setSearchParams }) {
             setFlights(result.flights_output);
           }
         } else if (decision === 'continue' || decision === 'inspiration_agent') {
-          const botResponse = result.agent_response || (decision === 'inspiration_agent' ? "Here is a new suggestion!" : "I see.");
+          let botResponse;
+          if (decision === 'inspiration_agent') {
+            botResponse = result.inspiration_response || "Here is a new suggestion!";
+          } else {
+            botResponse = result.agent_response || "I see.";
+          }
           setMessages((prev) => [...prev, { sender: 'bot', text: botResponse }]);
         }
       } else {

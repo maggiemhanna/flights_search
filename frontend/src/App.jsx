@@ -25,22 +25,21 @@ function App() {
     }));
   };
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
+  const fetchFlights = async (params) => {
     setLoading(true);
     setError(null);
     setFlights([]);
 
     const payload = {
-      origin: searchParams.origin,
-      destination: searchParams.destination,
-      departure_date: searchParams.departure_date,
-      return_date: searchParams.return_date,
-      passengers: searchParams.passengers,
+      origin: params.origin,
+      destination: params.destination,
+      departure_date: params.departure_date,
+      return_date: params.return_date,
+      passengers: params.passengers,
       filters: {
-        ...(searchParams.direct && { direct: true }),
-        ...(searchParams.max_price && { max_price: parseInt(searchParams.max_price, 10) }),
-        ...(searchParams.max_stops !== '' && { max_stops: parseInt(searchParams.max_stops, 10) }),
+        ...(params.direct && { direct: true }),
+        ...(params.max_price && { max_price: parseInt(params.max_price, 10) }),
+        ...(params.max_stops !== '' && { max_stops: parseInt(params.max_stops, 10) }),
       }
     };
 
@@ -69,6 +68,11 @@ function App() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    await fetchFlights(searchParams);
   };
 
   return (
@@ -152,7 +156,7 @@ function App() {
           <div className="empty-state">No flights loaded yet. Try searching!</div>
         )}
       </div>
-      <ChatWidget flights={flights} setFlights={setFlights} searchParams={searchParams} setSearchParams={setSearchParams} />
+      <ChatWidget flights={flights} setFlights={setFlights} searchParams={searchParams} setSearchParams={setSearchParams} fetchFlights={fetchFlights} />
     </div>
   );
 }
