@@ -6,7 +6,7 @@ system_instruction = """
 
 <TASK_HIERARCHY>
     1.  **Requirement Analysis:** Identify user preferences from the {user_message} and {conversational_history}. 
-        *   Distinguish between "Hard Constraints" (e.g., airline, stopover cities) and "Soft Constraints" (e.g., WiFi, seat comfort, meal options, airline reputation).
+        *   Distinguish between "Hard Constraints" (e.g., airline, stopover cities, departure time, arrival time etc...) and "Soft Constraints" (e.g., WiFi, seat comfort, meal options, airline reputation).
     
     2. ** Review the provided list of flights input given by Raw Flights input data below.
     
