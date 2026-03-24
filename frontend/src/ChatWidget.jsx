@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function ChatWidget({ flights, setFlights, setSearchParams }) {
+function ChatWidget({ flights, setFlights, searchParams, setSearchParams }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { sender: 'bot', text: 'Hello! I can help you filter or find flights. Try "only direct flights" or "flights under $500".' }
@@ -25,7 +25,14 @@ function ChatWidget({ flights, setFlights, setSearchParams }) {
     const payload = {
       user_message: userMessage,
       conversational_history: conversationalHistory,
-      flights_input: flights
+      flights_input: flights,
+      flights_search_input: {
+        origin: searchParams.origin,
+        destination: searchParams.destination,
+        departure_date: searchParams.departure_date,
+        return_date: searchParams.return_date,
+        passengers: parseInt(searchParams.passengers, 10) || 1
+      }
     };
 
     try {
@@ -47,7 +54,14 @@ function ChatWidget({ flights, setFlights, setSearchParams }) {
         const result = data.results;
         const decision = result.agent_decision;
 
-        if (decision === 'filter' || decision === 'smart_filter') {
+        if (result.flights_search_output) {
+          setSearchParams(prev => ({
+            ...prev,
+            ...result.flights_search_output
+          }));
+        }
+
+        if (decision === 'filter' || decision === 'smart_filter' || decision === 'filter_smart') {
           // Display filter_response if available
           const botResponse = result.filter_response || result.agent_response || "Filters applied!";
           setMessages((prev) => [...prev, { sender: 'bot', text: botResponse }]);
@@ -79,8 +93,8 @@ function ChatWidget({ flights, setFlights, setSearchParams }) {
           } else if (decision === 'smart_filter' && result.flights_output) {
             setFlights(result.flights_output);
           }
-        } else if (decision === 'continue') {
-          const botResponse = result.agent_response || "I see.";
+        } else if (decision === 'continue' || decision === 'inspiration_agent') {
+          const botResponse = result.agent_response || (decision === 'inspiration_agent' ? "Here is a new suggestion!" : "I see.");
           setMessages((prev) => [...prev, { sender: 'bot', text: botResponse }]);
         }
       } else {
