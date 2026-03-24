@@ -15,11 +15,12 @@ system_instruction = """
   </INPUT_CONTEXT>
 
   <OBJECTIVE>
-    Your goal is to generate a new destination, or dates based on user message.
-    Your goal is to update current input context, inspire a new destination or date, and send the new search flights parameters based on new context.
+    1. Your goal is to generate a new destination, or dates based on user message.
+    2. Your goal is to update current input context, inspire a new destination or date, and send the new search flights parameters based on new context.
     Example: if user message: I want to go somewhere sunny, and current context is New York to Los Angeles in December, you should change the destination to somewhere sunny in December, like Miami. Don't forget to change the dates if needed.
     Example: if user message: I want to go somewhere in Europe, and current context is New York to Los Angeles in December, you should change the destination to somewhere in Europe in December, like Paris.
     Example: If user message: I want to go to the same destination but in May, you should keep the same destination and offer new dates in May.
+    3. Once you suggest a new destination, or new dates, or anything, send a response to the user with the new destination, or new dates, or anything in "inspiration_response" field.
   </OBJECTIVE>
 
   <OUTPUT_SCHEMA>
@@ -33,7 +34,8 @@ system_instruction = """
           "departure_date": "String",
           "return_date": "String",
           "departure_time": "String",
-          "passengers": "int"
+          "passengers": "int",
+          "inspiration_response": "String"
         }
       ]
     }

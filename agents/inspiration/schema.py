@@ -51,4 +51,9 @@ class InspirationOutput(BaseModel):
         ..., 
         description="The number of passengers for the flight search."
     )
+    inspiration_response: str = Field(
+        ..., 
+        description="The inspiration response for the new flight search."
+    )
+        
     

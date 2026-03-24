@@ -31,6 +31,10 @@ def call_smart_filter_api(api_inputs):
     response = requests.post("http://127.0.0.1:8003/run-filter-smart", json=api_inputs)
     return response.json()
 
+def call_inspiration_agent_api(api_inputs):
+    response = requests.post("http://127.0.0.1:8007/run-inspiration", json=api_inputs)
+    return response.json()
+
 # --- FastAPI Application ---
 api = FastAPI(
     title="Orchestrator Agent Service",
@@ -95,6 +99,24 @@ async def execute_agent_run(user_input: OrchestratorInput) -> List[Dict[str, Any
             logger.info(f"--- Smart Filter API response ---\n{format_dict_for_logs(smart_filter_response)}")
             results = results | smart_filter_response["results"][0]
             logger.info(f"--- Engage & Smart Filter API response ---\n{format_dict_for_logs(results)}")
+
+        if results["agent_decision"] == "inspiration_agent":
+            inspiration_state = {
+                "user_message": initial_state["user_message"],
+                "conversational_history": initial_state["conversational_history"],
+                "origin": initial_state["flights_search_input"]["origin"],
+                "destination": initial_state["flights_search_input"]["destination"],
+                "departure_date": initial_state["flights_search_input"]["departure_date"],
+                "return_date": initial_state["flights_search_input"]["return_date"],
+                "passengers": initial_state["flights_search_input"]["passengers"]
+            }
+            logger.info(f"--- Inspiration Agent API input ---\n{format_dict_for_logs(inspiration_state)}")
+            inspiration_response = call_inspiration_agent_api(inspiration_state) 
+            logger.info(f"--- Inspiration Agent API response ---\n{format_dict_for_logs(inspiration_response)}")
+            results["flights_search_output"] = inspiration_response["results"][0]
+            results["inspiration_response"] = inspiration_response["results"][0]["inspiration_response"]
+            results["flights_search_output"].pop("inspiration_response")
+            logger.info(f"--- Inspiration Agent API response ---\n{format_dict_for_logs(results)}")
 
         return {"status": "success", "results": results}
 
