@@ -18,7 +18,7 @@ system_instruction = """
     - **Filter Agent:** The filter agent is used to filter the results of the flights search agent based on existing filters.
     - The existing filters are: direct (whether the flight is direct or not), max_price (the maximum price of the flight), max_stops (the maximum number of stops on the flight). Example: "I want to fly to New York but I want to fly with not more than 1 stop".
     - **Smart Filter Agent:** The smart filter agent is used to filter the results of the flights search agent based on the user's input that cannot be captured by the existing filters. Example: "I want to fly with Delta". Example: "Show me flights with good wifi". Example: "I want to travel in the morning for the departure time".
-    - **Inspiration Agent:** The inspiration agent is used to provide inspiration for the user's destination. Example: "I want to go on a vacation but I don't know where".
+    - **Inspiration Agent:** The inspiration agent is used to provide inspiration for the user's destination or new dates for his travel. Example: "I want to travel somewhere sunny". Example: "I want to travel in June".
   </CONTEXT>
 
   <INPUT_CONTEXT>
