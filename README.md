@@ -1,34 +1,42 @@
 # ✈️ Flights Search & Filtering Multi-Agent System
 
-Welcome to the **Flights Search Multi-Agent System**! This repository contains a cutting-edge, modular architecture for simulating flight searches and applying complex filters using **Natural Language Queries**. 
+Welcome to the **Flights Search Multi-Agent System**! This repository contains a cutting-edge, modular architecture for simulating flight searches and applying complex filters using **Natural Language Queries**.
 
 Leveraging the **Google ADK (Agent Development Kit)** and **FastAPI**, this project demonstrates how to orchestrate multiple specialized LLM agents alongside deterministic Python logic to create a robust, reliable, and user-friendly experience.
+
+It now also includes a beautifully crafted React frontend with an interactive conversational ChatWidget that talks directly to the backend Orchestrator!
 
 ---
 
 ## 🏗️ Architectural Overview
 
-The system is split into two main domains:
-1.  **Simulated Search & Data Generation:** An independent agent that acts as a mock flight search engine.
-2.  **Conversational Flow & Filtering Pipeline:** A set of agents coordinated by a rule-based engine (FastAPI) to parse intent and apply both hard (deterministic) and soft (semantic) filters.
+The system is split into multiple main domains:
+1.  **Frontend Interface:** A beautiful React application to explore flights and engage in conversational search via the ChatWidget.
+2.  **Simulated Search & Data Generation:** An independent agent that acts as a mock flight search engine.
+3.  **Conversational Flow & Filtering Pipeline:** A set of agents coordinated by a rule-based engine (`Orchestrator` in FastAPI) to parse intent, process conversational history, and apply both hard (deterministic) and soft (semantic) filters, or even inspire a whole new journey.
+4.  **Formatting & Parsing Helpers:** Agents operating in the background to ensure structured JSON output.
 
 ### 🧩 System Flow Diagram
 
 ```mermaid
 graph TD
-    User([User Query]) --> Orchestrator{Orchestrator Service <br/><i>(Pure Python FastAPI)</i>}
+    User([User + ChatWidget]) --> Orchestrator{Orchestrator Service <br/><i>(Pure Python FastAPI)</i>}
     
     %% Intent Detection
-    Orchestrator --> Engage[Engage Agent <br/><i>(Intent Classifier)</i>]
-    Engage -->|agent_decision| Orchestrator
+    Orchestrator <--> Engage[Engage Agent <br/><i>(Intent Classifier)</i>]
     
-    %% Routing
+    %% Routing Decisions
     Orchestrator -->|Decision: filter| FilterAgent[Filter Agent <br/><i>(NL to Parameters)</i>]
     Orchestrator -->|Decision: smart_filter| SmartFilter[Smart Filter Agent <br/><i>(Semantic Filtering + Research)</i>]
+    Orchestrator -->|Decision: inspiration_agent| InspirationAgent[Inspiration Agent <br/><i>(Destination/Date Inspiration)</i>]
     
-    %% Output
-    FilterAgent -->|Structured Params| DeterministicOutput[Reliable Backend Update]
-    SmartFilter -->|Pruned List| StructuredOutput[Filtered JSON Results]
+    %% Output Handling
+    FilterAgent --> DeterministicOutput[Reliable Backend Update]
+    SmartFilter --> StructuredOutput[Filtered JSON Results]
+    InspirationAgent --> NewParamsOutput[Dynamic Parameter Updates]
+    
+    %% Helper
+    Orchestrator <--> JsonParser[JSON Parser Agent <br/><i>(Structured Output Corrector)</i>]
     
     %% Flights Search (Independent)
     FlightsSim[Flights Search Agent <br/><i>(Simulator)</i>] -.->|Generates Data| SmartFilter
@@ -39,29 +47,17 @@ graph TD
 ## 🤖 Meet the Agents
 
 ### 1. 🔍 Flights Search Agent (`flights_search`)
-The **Flights Search Agent** is the foundation of data simulation in this project. It acts as an independent, expert flight search simulator.
-
+The foundation of data simulation in this project.
 -   **Role:** Generates a realistic and diverse list of flights based on primary search criteria.
--   **Model:** `gemini-2.5-flash`
--   **Capabilities:**
-    -   Takes input like `origin`, `destination`, `dates`, and `passengers`.
-    -   Synthesizes simulated flight numbers, airlines, departure/arrival times, stops, and prices.
-    -   Guarantees a rich dataset of **15 flights** per request to ensure downstream filtering has enough variance.
-
----
 
 ### 2. 🤝 Engage Agent (`engage`)
-The **Engage Agent** acts as the primary triage or receptionist for user requests. 
-
+The primary triage or receptionist for user requests.
 -   **Role:** Analyzes user messages alongside conversational history to classify intent.
 -   **Decisions:**
-    -   `continue`: Solicits more information from the user.
-    -   `filter`: Directs the flow to standard, hard-constraint filtering.
-    -   `smart_filter`: Directs the flow to semantic, soft-constraint filtering.
-    -   `inspiration_agent`: (Roadmap) Handles open-ended vacation planning.
--   **Importance:** By offloading routing to an LLM, the system can understand messy natural language without complex regex or keyword matching.
-
----
+    -   `continue`: Solicits more information.
+    -   `filter`: Standard, hard-constraint filtering.
+    -   `smart_filter`: Semantic, soft-constraint filtering.
+    -   `inspiration_agent`: Hand-off to the Inspiration agent for open-ended destination or date discovery.
 
 ### 3. 🔢 Filter Agent (`filter`) — *Translating NL to Deterministic Parameters*
 The **Filter Agent** is a specialized LLM that bridges the gap between natural language and traditional, programmatic databases.
@@ -73,32 +69,23 @@ The **Filter Agent** is a specialized LLM that bridges the gap between natural l
 
 ---
 
-### 4. 🧠 Smart Filter Agent (`filter_smart`) — *Semantic & Research-Enabled*
-The **Smart Filter Agent** handles queries that rigid databases cannot solve (e.g., "I want flights with good WiFi" or "Show me airlines with modern fleets").
+### 4. 🧠 Smart Filter Agent (`filter_smart`)
+Handles queries that rigid databases cannot solve (e.g., "I want flights with good WiFi").
+-   **Role:** Evaluates "Soft Constraints" using contextual reasoning over the actual flight payload.
 
--   **Role:** Evaluates "Soft Constraints" using contextual reasoning and external research.
--   **Capabilities:**
-    -   Parses lists of flights and prunes out candidates that fail semantic tests.
-    -   Triggers parallel **Google Search API** queries to research things like WiFi availability or legroom for specific flight numbers/airlines.
--   **Output:** Prunes the `flights_input` and returns a curated JSON array alongside a human explanation of the deductions.
+### 5. 💡 Inspiration Agent (`inspiration`)
+A creative companion for the indecisive traveler.
+-   **Role:** Analyzes requests like "I want to travel somewhere sunny" or "I want to fly in June" and intelligently suggests new destinations and automatically updates the travel parameters context.
+
+### 6. 🛠️ JSON Parser Agent (`json_parser`)
+A specialized structural assistant.
+-   **Role:** Validates, structures, and occasionally corrects text chunks out of LLM responses to enforce perfectly-formatted JSON schemas for reliable cross-agent communication.
 
 ---
 
-### 🔢 The Orchestrator Logic: Bridging Natural Language to Deterministic Actions
+## 🔢 The Orchestrator Logic
 
-The `orchestrator` is not an LLM agent itself; it is a **pure Python/FastAPI service** that implements rule-based orchestration. It manages the pipeline of passing data between agents to achieve reliable results based on user queries and history.
-
-#### How it works:
-1.  **Understand Intent:** The Orchestrator receives a user query and passes it to the `engage` agent.
-2.  **Evaluate Decision:**
-    -   **Standard Filtering (Deterministic Extraction):** If `engage` decides the query is a standard filter (e.g., "Under $500"), the Orchestrator routes it to the **`filter` agent**.
-        -   The `filter` agent translates this into a **deterministic parameter** (e.g., `filter_type='max_price'`, `filter_value=500`).
-        -   The orchestrator returns these parameters to the system, enabling a traditional database/backend to execute the filter *without* risk of LLM hallucinations.
-    -   **Semantic Filtering (Smart Pruning):** If `engage` decides it's a soft constraint (e.g., "Show me flights with good WiFi"), it routes to **`filter_smart`**.
-        -   The `filter_smart` agent reads the actual flight list, research topics, and prunes the flights directly, returning a filtered subset of flights (`flights_output`).
-
-By combining the **`engage`** agent for intent parsing and the **`filter`** agent for parameter extraction, the `orchestrator` enables users to interact with complex, deterministic systems using natural language, ensuring accuracy and reliability.
-
+The `orchestrator` is not an LLM agent; it is a **pure Python/FastAPI service**. It sits directly behind the ChatWidget, sending the user's history and queries to the `engage` agent, and delegating the follow-up logic to the respective expert agents (`filter`, `filter_smart`, or `inspiration`). It returns a structured JSON payload that the frontend can read easily, immediately updating the search inputs on the screen and repopulating new flight listings if instructed.
 
 ---
 
@@ -106,28 +93,41 @@ By combining the **`engage`** agent for intent parsing and the **`filter`** agen
 
 ### Prerequisites
 - Python >= 3.11
-- GEMINI_API_KEY environment variable set.
+- Node.js (for frontend)
+- `GEMINI_API_KEY` environment variable set.
 
 ### Installation
+**Backend:**
 ```bash
-# Set up virtual environment
 python3 -m venv .venv
 source .venv/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
+**Frontend:**
+```bash
+cd frontend
+npm install
+```
+
 ### Running the Services
-Each agent runs as a separate micro-service on a dedicated port. Start them in separate terminals or as background processes:
+Start the backend services as background processes or in separate terminals:
 
 | Service | Port | Command |
 | :--- | :--- | :--- |
-| **Flights Search Simulator** | `8000` | `python -m agents.flights_search.main` |
 | **Engage Agent** | `8001` | `python -m agents.engage.main` |
 | **Filter Agent** | `8002` | `python -m agents.filter.main` |
 | **Smart Filter Agent** | `8003` | `python -m agents.filter_smart.main` |
-| **Orchestrator Core** | `8004` | `python -m agents.orchestrator.main` |
+| **JSON Parser Agent** | `8004` | `python -m agents.json_parser.main` |
+| **Orchestrator Core** | `8005` | `python -m agents.orchestrator.main` |
+| **Flights Search Simulator** | `8006` | `python -m agents.flights_search.main` |
+| **Inspiration Agent** | `8007` | `python -m agents.inspiration.main` |
+
+Start the frontend application:
+```bash
+cd frontend
+npm run dev
+```
 
 ### Testing
 You can run tests for each agent or run all integrations via standard `pytest`:
