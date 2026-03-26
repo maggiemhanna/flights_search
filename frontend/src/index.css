@@ -175,9 +175,9 @@ input:focus {
   font-style: italic;
 }
 
-.flights-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+.flights-list {
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
   animation: fadeIn 0.8s ease-out;
 }
@@ -185,47 +185,212 @@ input:focus {
 .flight-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+    align-items: center;
   justify-content: space-between;
+  padding: 1.5rem 2rem;
+    gap: 1.5rem;
 }
 
 .flight-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
   border-color: rgba(56, 189, 248, 0.3);
 }
 
-.flight-card-header {
+.flight-airline,
+.flight-route,
+.flight-stops,
+.flight-price {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--glass-border);
+  flex-direction: column;
 }
 
-.flight-card-header h3 {
+.flight-airline {
+  flex: 1.5;
+}
+
+.flight-airline h3 {
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--accent-color);
+  margin-bottom: 0.2rem;
+  }
+  
+  .flight-number {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+  
+  .flight-route {
+    flex: 3;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0; /* Remove gap since route-divider handles spacing using flex and margin */
+  }
+  
+  .flight-leg {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .leg-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-color);
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+  }
+  
+  .flight-leg .time {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+  
+  .flight-leg .cities {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .route-divider {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    min-width: 60px;
+    margin: 0 1.5rem;
+    position: relative;
+  }
+
+.dash-line {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  width: 100%;
 }
 
-.price {
-  font-size: 1.25rem;
+.dash-line::before,
+.dash-line::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--glass-border) 0,
+    var(--glass-border) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 0.6;
+}
+
+.plane {
+  color: var(--accent-color);
+  background: transparent;
+  padding: 0 0.75rem;
+  font-size: 1.4rem;
+  display: inline-block;
+  transform: translateY(-2px);
+}
+
+.flight-stops {
+  flex: 1.5;
+  align-items: center;
+}
+
+.stops-count {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.stop-cities {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.flight-price {
+  flex: 1;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.flight-price .price {
+  font-size: 1.4rem;
   font-weight: 800;
   background: var(--secondary-glow);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.flight-card-body p {
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-  color: var(--text-secondary);
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1.5rem;
 }
 
-.flight-card-body strong {
+.page-btn {
+  background: rgba(0, 0, 0, 0.3);
   color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-color);
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+  .flight-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .flight-airline,
+  .flight-route,
+  .flight-stops,
+  .flight-price {
+    flex: 1;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .flight-route {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .stop-cities {
+    text-align: left;
+  }
 }
 
 /* Animations */

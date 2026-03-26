@@ -16,6 +16,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [flights, setFlights] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const flightsPerPage = 5;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,6 +31,7 @@ function App() {
     setLoading(true);
     setError(null);
     setFlights([]);
+    setCurrentPage(1);
 
     const payload = {
       origin: params.origin,
@@ -74,6 +77,13 @@ function App() {
     e.preventDefault();
     await fetchFlights(searchParams);
   };
+
+  const indexOfLastFlight = currentPage * flightsPerPage;
+  const indexOfFirstFlight = indexOfLastFlight - flightsPerPage;
+  const currentFlights = flights.slice(indexOfFirstFlight, indexOfLastFlight);
+  const totalPages = Math.ceil(flights.length / flightsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="container">
@@ -134,22 +144,67 @@ function App() {
         {loading && <div className="loader">Analyzing flight paths...</div>}
 
         {!loading && flights.length > 0 && (
-          <div className="flights-grid">
-            {flights.map((flight, idx) => (
-              <div key={idx} className="flight-card glass-panel">
-                <div className="flight-card-header">
-                  <h3>{flight.airline}</h3>
-                  <span className="price">{flight.price}</span>
+          <>
+            <div className="flights-list">
+              {currentFlights.map((flight, idx) => (
+                <div key={idx} className="flight-card glass-panel">
+                  <div className="flight-airline">
+                    <h3>{flight.airline}</h3>
+                    <p className="flight-number">{flight.flight_number}</p>
+                  </div>
+                  <div className="flight-route">
+                    <div className="flight-leg">
+                      {flight.departure_date && <span className="leg-label">Outbound • {flight.departure_date}</span>}
+                      <p className="time">{flight.departure_time} - {flight.arrival_time}</p>
+                      <p className="cities">{flight.origin} ➔ {flight.destination}</p>
+                    </div>
+                    {flight.return_time && flight.return_arrival_time && (
+                      <>
+                        <div className="route-divider">
+                          <div className="dash-line"><span className="plane">✈</span></div>
+                        </div>
+                        <div className="flight-leg">
+                          {flight.return_date && <span className="leg-label">Return • {flight.return_date}</span>}
+                          <p className="time">{flight.return_time} - {flight.return_arrival_time}</p>
+                          <p className="cities">{flight.destination} ➔ {flight.origin}</p>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  <div className="flight-stops">
+                    <p className="stops-count">{flight.stops === 0 ? 'Direct' : `${flight.stops} Stop${flight.stops > 1 ? 's' : ''}`}</p>
+                    {flight.stopover_cities && flight.stopover_cities.length > 0 && (
+                      <p className="stop-cities">{flight.stopover_cities.join(', ')}</p>
+                    )}
+                  </div>
+                  <div className="flight-price">
+                    <span className="price">{flight.price}</span>
+                  </div>
                 </div>
-                <div className="flight-card-body">
-                  <p><strong>Flight:</strong> {flight.flight_number}</p>
-                  <p><strong>Route:</strong> {flight.origin} ➔ {flight.destination}</p>
-                  <p><strong>Times:</strong> {flight.departure_time} - {flight.arrival_time}</p>
-                  <p><strong>Stops:</strong> {flight.stops} {flight.stopover_cities.length > 0 && `(${flight.stopover_cities.join(', ')})`}</p>
-                </div>
+              ))}
+            </div>
+            {totalPages > 1 && (
+              <div className="pagination">
+                <button
+                  onClick={() => paginate(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="page-btn"
+                >
+                  Previous
+                </button>
+                <span className="page-info">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="page-btn"
+                >
+                  Next
+                </button>
               </div>
-            ))}
-          </div>
+            )}
+          </>
         )}
 
         {!loading && flights.length === 0 && !error && (
