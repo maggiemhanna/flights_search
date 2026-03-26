@@ -79,7 +79,7 @@ function App() {
     <div className="container">
       <header>
         <h1>✈️ Flights Search Simulator</h1>
-        <p>Powered by Google ADK & FastAPI</p>
+        <p>Powered by Gemini & Google ADK</p>
       </header>
 
       <div className="glass-panel search-bar">
