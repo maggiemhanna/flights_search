@@ -44,7 +44,7 @@ def load_env_variables(file_path: Path) -> None:
 load_env_variables(ENV_FILE_PATH)
 
 def call_json_parser_api(api_inputs):
-    response = requests.post("http://127.0.0.1:8004/run-json-parser", json=api_inputs)
+    response = requests.post("https://json-parser-service-874751466618.europe-west9.run.app/run-json-parser", json=api_inputs)
     return response.json()
 
 
@@ -129,6 +129,7 @@ async def execute_agent_run(user_input: FilterSmartInput) -> List[Dict[str, Any]
                     "response_text": text_content,
                 }
                 json_parser_response = call_json_parser_api(json_parser_state) 
+                logger.info(f"--- JSON Parser Response ---\n{format_dict_for_logs(json_parser_response, max_len=1000)}")
                 parsed_responses.append(json_parser_response["results"][0])
 
         
