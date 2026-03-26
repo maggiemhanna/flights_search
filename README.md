@@ -132,12 +132,12 @@ npm run dev
 ### Testing
 You can run tests for each agent or run all integrations via standard `pytest`:
 ```bash
-# Run all tests
-pytest tests/
+# Run test for a specific agent {agent_name}
+python -m pytest tests/{agent_name}/test.py
 ```
-You can also run the orchestrator tests manually via:
+You can also run the agent tests manually via:
 ```bash
-python tests/orchestrator/test.py
+python -m tests.{agent_name}.test
 ```
 
 

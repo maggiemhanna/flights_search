@@ -23,8 +23,10 @@ def test_root_endpoint():
 def test_run_json_parser():
     """Test the JSON Parser endpoint and validate the exact JSON structure."""
     
+    import os
     import json
-    tests=json.load(open("tests/json_parser/tests.json"))
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    tests=json.load(open(os.path.join(current_dir, "tests.json")))
 
     with TestClient(api) as client:
         for test in tests:        

@@ -23,8 +23,10 @@ def test_root_endpoint():
 def test_run_orchestrator():
     """Test the engage endpoint and validate the exact JSON structure."""
     
+    import os
     import json
-    tests=json.load(open("tests/orchestrator/tests.json"))
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    tests=json.load(open(os.path.join(current_dir, "tests.json")))
 
     with TestClient(api) as client:
         for test in tests:        
@@ -32,6 +34,7 @@ def test_run_orchestrator():
             payload = {
                 "user_message": test["user_message"],
                 "conversational_history": test["conversational_history"],
+                "flights_search_input": test["flights_search_input"],
                 "flights_input": test["flights_input"]
                 }
             logger.info(f"--- Raw Payload ---\n{format_dict_for_logs(payload)}")

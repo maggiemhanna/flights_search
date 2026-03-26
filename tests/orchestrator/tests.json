@@ -2,6 +2,13 @@
   {
     "user_message": "I want to fly with good wifi.",
     "conversational_history": [],
+    "flights_search_input": {
+      "origin": "Paris",
+      "destination": "New York",
+      "departure_date": "2026-05-10",
+      "return_date": "2026-05-20",
+      "passengers": 1
+    },
     "flights_input": [
       {
         "origin": "Paris",
@@ -249,6 +256,13 @@
   {
     "user_message": "I want to fly with Air France",
     "conversational_history": [],
+    "flights_search_input": {
+      "origin": "Paris",
+      "destination": "New York",
+      "departure_date": "2026-05-10",
+      "return_date": "2026-05-20",
+      "passengers": 1
+    },
     "flights_input": [
       {
         "origin": "Paris",
@@ -496,6 +510,13 @@
   {
     "user_message": "I want to fly direct",
     "conversational_history": [],
+    "flights_search_input": {
+      "origin": "Paris",
+      "destination": "New York",
+      "departure_date": "2026-05-10",
+      "return_date": "2026-05-20",
+      "passengers": 1
+    },
     "flights_input": [
       {
         "origin": "Paris",
@@ -743,6 +764,13 @@
   {
     "user_message": "Hello, how can you help me?",
     "conversational_history": [],
+    "flights_search_input": {
+      "origin": "Paris",
+      "destination": "New York",
+      "departure_date": "2026-05-10",
+      "return_date": "2026-05-20",
+      "passengers": 1
+    },
     "flights_input": [
       {
         "origin": "Paris",
