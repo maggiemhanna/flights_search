@@ -1,0 +1,23 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/flights-search-service', '-f', 'agents/flights_search/Dockerfile', '.']
+
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/flights-search-service']
+
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - 'flights-search-service'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/flights-search-service'
+  - '--region'
+  - 'europe-west9'
+  - '--platform'
+  - 'managed'
+  - '--allow-unauthenticated'

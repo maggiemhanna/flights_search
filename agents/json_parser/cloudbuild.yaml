@@ -1,0 +1,23 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/vertexai-explore-437408/json-parser-service', '-f', 'agents/json_parser/Dockerfile', '.']
+
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/vertexai-explore-437408/json-parser-service']
+
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - 'json-parser-service'
+  - '--image'
+  - 'gcr.io/vertexai-explore-437408/json-parser-service'
+  - '--region'
+  - 'europe-west9'
+  - '--platform'
+  - 'managed'
+  - '--allow-unauthenticated'
