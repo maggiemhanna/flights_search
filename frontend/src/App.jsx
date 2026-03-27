@@ -1,6 +1,22 @@
 import { useState } from 'react';
 import ChatWidget from './ChatWidget';
 
+const MAJOR_CITIES = [
+  "Abu Dhabi", "Auckland", "Amsterdam", "Athens", "Atlanta",
+  "Bangkok", "Barcelona", "Beijing", "Berlin", "Bogota", "Boston", "Brussels", "Buenos Aires",
+  "Cairo", "Cape Town", "Casablanca", "Chicago", "Copenhagen",
+  "Dallas", "Delhi", "Denver", "Doha", "Dubai", "Dublin",
+  "Frankfurt", "Geneva", "Hanoi", "Helsinki", "Ho Chi Minh City", "Hong Kong", "Honolulu", "Houston",
+  "Istanbul", "Jakarta", "Johannesburg", "Kuala Lumpur",
+  "Las Vegas", "Lima", "Lisbon", "London", "Los Angeles",
+  "Madrid", "Manila", "Melbourne", "Mexico City", "Miami", "Milan", "Montreal", "Mumbai", "Munich",
+  "New York", "Nairobi", "New Delhi", "Oslo",
+  "Paris", "Prague", "Reykjavik", "Rio de Janeiro", "Rome",
+  "San Francisco", "Santiago", "Sao Paulo", "Seattle", "Seoul", "Shanghai", "Singapore", "Stockholm", "Sydney",
+  "Taipei", "Tel Aviv", "Tokyo", "Toronto",
+  "Vancouver", "Vienna", "Warsaw", "Washington D.C.", "Zurich"
+].sort();
+
 function App() {
   const [searchParams, setSearchParams] = useState({
     origin: 'Paris',
@@ -94,13 +110,35 @@ function App() {
 
       <div className="glass-panel search-bar">
         <form onSubmit={handleSearch}>
+          <datalist id="cities-list">
+            {MAJOR_CITIES.map((city, index) => (
+              <option key={index} value={city} />
+            ))}
+          </datalist>
+
           <div className="form-group">
             <label>Origin</label>
-            <input type="text" name="origin" value={searchParams.origin} onChange={handleChange} required />
+            <input
+              type="text"
+              name="origin"
+              list="cities-list"
+              value={searchParams.origin}
+              onChange={handleChange}
+              autoComplete="off"
+              required
+            />
           </div>
           <div className="form-group">
             <label>Destination</label>
-            <input type="text" name="destination" value={searchParams.destination} onChange={handleChange} required />
+            <input
+              type="text"
+              name="destination"
+              list="cities-list"
+              value={searchParams.destination}
+              onChange={handleChange}
+              autoComplete="off"
+              required
+            />
           </div>
           <div className="form-group">
             <label>Departure Date</label>
@@ -123,7 +161,7 @@ function App() {
           </div>
 
           <div className="form-group">
-            <label>Max Price (USD)</label>
+            <label>Max Price (EUR)</label>
             <input type="number" name="max_price" value={searchParams.max_price} onChange={handleChange} placeholder="e.g. 1000" />
           </div>
 

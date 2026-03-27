@@ -46,7 +46,7 @@ system_instruction = """
       "arrival_time": "10:00 +1",
       "return_time": "14:00",
       "return_arrival_time": "17:30",
-      "price": "$620",
+      "price": "620 EUR",
       "airline": "British Airways",
       "flight_number": "BA178",
       "stops": 0,

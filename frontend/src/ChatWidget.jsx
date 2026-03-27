@@ -3,7 +3,7 @@ import { useState } from 'react';
 function ChatWidget({ flights, setFlights, searchParams, setSearchParams, fetchFlights }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: 'bot', text: 'Hello! I can help you filter or find flights. Try "only direct flights" or "flights under $500".' }
+    { sender: 'bot', text: 'Hello! I can help you filter or find flights. Try "flights under $500", "flights with good wifi", or "flights with lower emission".' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
