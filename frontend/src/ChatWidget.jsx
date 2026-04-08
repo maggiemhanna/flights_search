@@ -94,7 +94,7 @@ function ChatWidget({ flights, setFlights, searchParams, setSearchParams, fetchF
               }
               setFlights(filtered);
             }
-          } else if (decision === 'smart_filter' && result.flights_output) {
+          } else if ((decision === 'smart_filter' || decision === 'filter_smart') && result.flights_output) {
             setFlights(result.flights_output);
           }
         } else if (decision === 'continue' || decision === 'inspiration_agent') {
