@@ -14,7 +14,7 @@ from langchain_google_community import GoogleSearchAPIWrapper
 
 from agents.filter_smart.schema import FilterSmartInput, FilterSmartOutput
 from agents.filter_smart.prompt import system_instruction
-from utils.logging import setup_logging
+from utils.logging import setup_logging, format_dict_for_logs
 
 import re
 
@@ -101,18 +101,18 @@ def call_model(state: AgentState):
         conversational_history=state["conversational_history"],
         flights_input=state["flights_input"],
     )
-    
+    logger.info(f"--- System Message ---\n{system_message}")
+
     messages = [SystemMessage(content=system_message)] + [HumanMessage(content=state["user_message"])]
 
     response = model_with_tools.invoke(messages)
-    logger.info(f"--- Agent Response ---\n{response}")
 
     # Extract the response content
     response_content = response.content
     logger.info(f"--- Response Content ---\n{response_content}")
 
     response_tool_calls = response.tool_calls
-    logger.info(f"--- Response Tool Calls ---\n{response_tool_calls}")
+    logger.info(f"--- Response Tool Calls ---\n{format_dict_for_logs(response_tool_calls)}")
     
     if not response_tool_calls:
         response_json = load_json_with_markdown(response_content)
@@ -123,9 +123,8 @@ def call_model(state: AgentState):
 
 def call_tool_node(state: AgentState):
     tool_calls = state["tool_calls"]
-    logger.info(f"--- Tool Calls ---\n{tool_calls}")
     for tool_call in tool_calls:
-        logger.info(f"--- Tool Call ---\n{tool_call}")
+        logger.info(f"--- Tool Call ---\n{format_dict_for_logs(tool_call)}")
         logger.info(f"--- Tool Call Result ---\n{search_tool.invoke(tool_call["args"])}")
     return 
 
