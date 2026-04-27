@@ -114,6 +114,19 @@ async def fetch_google_flights(input_data: FlightsSearchInput) -> FlightsSearchO
             "type": 1,
             "api_key": api_key
         }
+        
+        if input_data.filters.direct:
+            search_params["stops"] = 1
+        elif input_data.filters.max_stops is not None:
+            if input_data.filters.max_stops == 0:
+                search_params["stops"] = 1
+            elif input_data.filters.max_stops == 1:
+                search_params["stops"] = 2
+            elif input_data.filters.max_stops == 2:
+                search_params["stops"] = 3
+                
+        if input_data.filters.max_price is not None:
+            search_params["max_price"] = input_data.filters.max_price
         try:
             search = GoogleSearch(search_params)
             results = search.get_dict()
