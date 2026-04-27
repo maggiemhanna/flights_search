@@ -249,7 +249,7 @@ function App() {
           <div className="empty-state">No flights loaded yet. Try searching!</div>
         )}
       </div>
-      <ChatWidget flights={flights} setFlights={setFlights} searchParams={searchParams} setSearchParams={setSearchParams} fetchFlights={fetchFlights} />
+      <ChatWidget flights={flights} setFlights={setFlights} searchParams={searchParams} setSearchParams={setSearchParams} fetchFlights={fetchFlights} setCurrentPage={setCurrentPage} />
     </div>
   );
 }

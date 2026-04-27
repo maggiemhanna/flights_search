@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function ChatWidget({ flights, setFlights, searchParams, setSearchParams, fetchFlights }) {
+function ChatWidget({ flights, setFlights, searchParams, setSearchParams, fetchFlights, setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { sender: 'bot', text: 'Hello! I can help you filter or find flights. Try "flights under $500", "flights with good wifi", or "flights with lower emission".' }
@@ -93,9 +93,11 @@ function ChatWidget({ flights, setFlights, searchParams, setSearchParams, fetchF
                 filtered = flights.filter(f => f.stops === 0);
               }
               setFlights(filtered);
+              setCurrentPage(1);
             }
           } else if ((decision === 'smart_filter' || decision === 'filter_smart') && result.flights_output) {
             setFlights(result.flights_output);
+            setCurrentPage(1);
           }
         } else if (decision === 'continue' || decision === 'inspiration_agent') {
           let botResponse;
