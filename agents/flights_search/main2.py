@@ -3,6 +3,7 @@
 
 import json
 import os
+import asyncio
 from pathlib import Path
 from typing import Any, Dict, List
 from uuid import uuid4
@@ -85,7 +86,7 @@ def get_location_ids(city_name: str, api_key: str) -> List[str]:
         logger.error(f"Error resolving location IDs for {city_name}: {e}")
     return []
 
-def fetch_google_flights(input_data: FlightsSearchInput) -> FlightsSearchOutput:
+async def fetch_google_flights(input_data: FlightsSearchInput) -> FlightsSearchOutput:
     api_key = os.environ.get("SERPAPI_API_KEY") or os.environ.get("SERPAPI_KEY")
     if not api_key:
         logger.error("SERPAPI_API_KEY environment variable not set.")
@@ -128,8 +129,50 @@ def fetch_google_flights(input_data: FlightsSearchInput) -> FlightsSearchOutput:
     sample_size = min(15, len(all_flights_pool))
     sampled_flights = random.sample(all_flights_pool, sample_size)
 
+    async def get_return_times(flight, origin_id, dest_id):
+        if "departure_token" not in flight:
+            return "N/A", "N/A"
+        departure_token = flight["departure_token"]
+        
+        def call_serpapi():
+            from serpapi import GoogleSearch
+            search = GoogleSearch({
+                "engine": "google_flights",
+                "departure_token": departure_token,
+                "departure_id": origin_id,
+                "arrival_id": dest_id,
+                "outbound_date": input_data.departure_date,
+                "return_date": input_data.return_date,
+                "api_key": api_key
+            })
+            return search.get_dict()
+            
+        try:
+            results = await asyncio.to_thread(call_serpapi)
+            options = results.get("best_flights", []) + results.get("other_flights", [])
+            if options:
+                best = options[0]
+                legs = best.get("flights", [])
+                if legs:
+                    return legs[0].get("departure_airport", {}).get("time", "N/A"), legs[-1].get("arrival_airport", {}).get("time", "N/A")
+        except Exception as e:
+            logger.error(f"Error fetching return flights for {departure_token}: {e}")
+        return "N/A", "N/A"
+
+    tasks = []
+    for flight in sampled_flights:
+        outbound_legs = flight.get("flights", [])
+        if outbound_legs:
+            o_id = outbound_legs[0].get("departure_airport", {}).get("id")
+            d_id = outbound_legs[-1].get("arrival_airport", {}).get("id")
+            tasks.append(get_return_times(flight, o_id, d_id))
+        else:
+            tasks.append(asyncio.sleep(0, result=("N/A", "N/A")))
+            
+    return_data = await asyncio.gather(*tasks)
+
     flights_list = []
-    for index, flight in enumerate(sampled_flights):
+    for flight, (ret_time, ret_arr_time) in zip(sampled_flights, return_data):
         flights_array = flight.get("flights", [])
         if not flights_array:
             continue
@@ -146,31 +189,8 @@ def fetch_google_flights(input_data: FlightsSearchInput) -> FlightsSearchOutput:
         departure_time = outbound_legs[0].get("departure_airport", {}).get("time", "N/A")
         arrival_time = outbound_legs[-1].get("arrival_airport", {}).get("time", "N/A")
         
-        return_time = "N/A"
-        return_arrival_time = "N/A"
-        
-        if index == 0 and "departure_token" in flight:
-            departure_token = flight["departure_token"]
-            try:
-                return_search = GoogleSearch({
-                    "engine": "google_flights",
-                    "departure_token": departure_token,
-                    "departure_id": primary_leg.get("departure_airport", {}).get("id"),
-                    "arrival_id": outbound_legs[-1].get("arrival_airport", {}).get("id"),
-                    "outbound_date": input_data.departure_date,
-                    "return_date": input_data.return_date,
-                    "api_key": api_key
-                })
-                return_results = return_search.get_dict()
-                return_options = return_results.get("best_flights", []) + return_results.get("other_flights", [])
-                if return_options:
-                    best_return = return_options[0]
-                    return_legs = best_return.get("flights", [])
-                    if return_legs:
-                        return_time = return_legs[0].get("departure_airport", {}).get("time", "N/A")
-                        return_arrival_time = return_legs[-1].get("arrival_airport", {}).get("time", "N/A")
-            except Exception as e:
-                logger.error(f"Error fetching return flights: {e}")
+        return_time = ret_time
+        return_arrival_time = ret_arr_time
 
         origin_str = f"{input_data.origin} ({outbound_legs[0].get('departure_airport', {}).get('id', 'N/A')})"
         dest_str = f"{input_data.destination} ({outbound_legs[-1].get('arrival_airport', {}).get('id', 'N/A')})"
@@ -198,7 +218,7 @@ async def run_flights_search(user_input: FlightsSearchInput) -> Dict[str, Any]:
     logger.info(f"--- Raw User Input ---\n{format_dict_for_logs(user_input.model_dump())}")
     
     try:
-        results = fetch_google_flights(user_input)
+        results = await fetch_google_flights(user_input)
         return {
             "status": "success",
             "results": [results.model_dump()]
