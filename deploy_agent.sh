@@ -22,7 +22,7 @@ for ROLE in "${ROLES[@]}"; do
     --role="$ROLE" --quiet > /dev/null
 done
 
-echo "Deploying microservices in parallel to project $PROJECT_ID..."
+echo "Deploying microservice to project $PROJECT_ID..."
 
 # Define the agents to deploy
 AGENTS=($AGENT_NAME)
