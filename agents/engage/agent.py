@@ -18,19 +18,19 @@ APP_NAME = "agents"
 
 # Create the agent
 engage = Agent(
-    model=Gemini(model="gemini-2.5-flash", use_interactions_api=False),
+    model=Gemini(model="gemini-2.5-pro", use_interactions_api=False),
     name="engage",
     description="""The Engage Agent: An expert at understanding user intent and extracting key information from their messages in order to decide which agent to use.""",
     instruction=system_instruction,
     input_schema=EngageInput,
     output_schema=EngageOutput,
     include_contents='none',
-    planner=BuiltInPlanner(
-        thinking_config=ThinkingConfig(
-            include_thoughts=False,
-            thinking_budget=0,
-        )
-    )
+    #planner=BuiltInPlanner(
+    #    thinking_config=ThinkingConfig(
+    #        include_thoughts=False,
+    #        thinking_budget=0,
+    #    )
+    #)
 )
 
 # Create the main App

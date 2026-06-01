@@ -18,19 +18,19 @@ APP_NAME = "agents"
 
 # Create the agent
 filter = Agent(
-    model=Gemini(model="gemini-2.5-flash", use_interactions_api=False),
+    model=Gemini(model="gemini-2.5-pro", use_interactions_api=False),
     name="filter_agent",
     description="""The Filter Agent: An expert at filtering the results of the flights search agent based on existing filters.""",
     instruction=system_instruction,
     input_schema=FilterInput,
     output_schema=FilterOutput,
     include_contents='none',
-    planner=BuiltInPlanner(
-        thinking_config=ThinkingConfig(
-            include_thoughts=False,
-            thinking_budget=0,
-        )
-    )
+    #planner=BuiltInPlanner(
+    #    thinking_config=ThinkingConfig(
+    #        include_thoughts=False,
+    #        thinking_budget=0,
+    #    )
+    #)
 )
 
 # Create the main App
