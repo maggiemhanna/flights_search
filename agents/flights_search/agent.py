@@ -18,7 +18,7 @@ APP_NAME = "agents"
 
 # Create the agent
 flights_search = Agent(
-    model=Gemini(model="gemini-2.5-flash", use_interactions_api=False),
+    model=Gemini(model="gemini-2.5-flash-lite", use_interactions_api=False),
     name="flights_search",
     description="""The Flight Search Agent: An expert flight search simulator. 
     This agent generates a list of flights based on the user's input.""",
