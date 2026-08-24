@@ -1,10 +1,26 @@
 #!/bin/bash
 
+# Check if an agent name is provided
+if [ -z "$1" ]; then
+  echo "❌ Error: AGENT_NAME is required."
+  echo "Usage: $0 <agent_name>"
+  echo "Example: $0 flights_search"
+  exit 1
+fi
+
+AGENT_NAME="$1"
+
+# Check if the agent's cloudbuild configuration exists
+if [ ! -f "agents/$AGENT_NAME/cloudbuild.yaml" ]; then
+  echo "❌ Error: agents/$AGENT_NAME/cloudbuild.yaml does not exist."
+  exit 1
+fi
+
 # Explicitly set the project for Google Cloud CLI
 export PROJECT_ID="vertexai-explore-437408"
 export SERVICE_ACCOUNT="874751466618-compute@developer.gserviceaccount.com"
 export CLOUDSDK_CORE_PROJECT="$PROJECT_ID"
-export AGENT_NAME="flights_search"
+export AGENT_NAME
 
 echo "Granting necessary IAM permissions to $SERVICE_ACCOUNT..."
 
@@ -22,10 +38,10 @@ for ROLE in "${ROLES[@]}"; do
     --role="$ROLE" --quiet > /dev/null
 done
 
-echo "Deploying microservice to project $PROJECT_ID..."
+echo "Deploying microservice ($AGENT_NAME) to project $PROJECT_ID..."
 
 # Define the agents to deploy
-AGENTS=($AGENT_NAME)
+AGENTS=("$AGENT_NAME")
 
 PIDS=()
 
