@@ -1,145 +1,174 @@
 # ✈️ Flights Search & Filtering Multi-Agent System
 
-Welcome to the **Flights Search Multi-Agent System**! This repository contains a cutting-edge, modular architecture for simulating flight searches and applying complex filters using **Natural Language Queries**.
+Welcome to the **Flights Search Multi-Agent System**! This project is a modular, event-driven travel platform built with **Google ADK (Agent Development Kit)**, **Google Gemini 2.5**, **FastAPI**, and **React**.
 
-Leveraging the **Google ADK (Agent Development Kit)** and **FastAPI**, this project demonstrates how to orchestrate multiple specialized LLM agents alongside deterministic Python logic to create a robust, reliable, and user-friendly experience.
-
-It now also includes a beautifully crafted React frontend with an interactive conversational ChatWidget that talks directly to the backend Orchestrator!
+It enables users to search for simulated flights and interactively refine results through a conversational **ChatWidget**—supporting hard parameter filtering, deep semantic filtering with live web research, open-ended travel inspiration, and self-healing JSON correction.
 
 ---
 
-## 🏗️ Architectural Overview
+## 🏗️ System Architecture
 
-The system is split into multiple main domains:
-1.  **Frontend Interface:** A beautiful React application to explore flights and engage in conversational search via the ChatWidget.
-2.  **Simulated Search & Data Generation:** An independent agent that acts as a mock flight search engine.
-3.  **Conversational Flow & Filtering Pipeline:** A set of agents coordinated by a rule-based engine (`Orchestrator` in FastAPI) to parse intent, process conversational history, and apply both hard (deterministic) and soft (semantic) filters, or even inspire a whole new journey.
-4.  **Formatting & Parsing Helpers:** Agents operating in the background to ensure structured JSON output.
+The application is architected as a set of autonomous microservices coordinated by a central gateway and connected to an interactive frontend.
 
-### 🧩 System Flow Diagram
+![Architecture](architecture.png)
 
-```mermaid
-graph TD
-    User([User + ChatWidget]) --> Orchestrator{Orchestrator Service <br/><i>(Pure Python FastAPI)</i>}
-    
-    %% Intent Detection
-    Orchestrator <--> Engage[Engage Agent <br/><i>(Intent Classifier)</i>]
-    
-    %% Routing Decisions
-    Orchestrator -->|Decision: filter| FilterAgent[Filter Agent <br/><i>(NL to Parameters)</i>]
-    Orchestrator -->|Decision: smart_filter| SmartFilter[Smart Filter Agent <br/><i>(Semantic Filtering + Research)</i>]
-    Orchestrator -->|Decision: inspiration_agent| InspirationAgent[Inspiration Agent <br/><i>(Destination/Date Inspiration)</i>]
-    
-    %% Output Handling
-    FilterAgent --> DeterministicOutput[Reliable Backend Update]
-    SmartFilter --> StructuredOutput[Filtered JSON Results]
-    InspirationAgent --> NewParamsOutput[Dynamic Parameter Updates]
-    
-    %% Helper
-    Orchestrator <--> JsonParser[JSON Parser Agent <br/><i>(Structured Output Corrector)</i>]
-    
-    %% Flights Search (Independent)
-    FlightsSim[Flights Search Agent <br/><i>(Simulator)</i>] -.->|Generates Data| SmartFilter
+---
+
+## 🤖 Microservices & Agents Overview
+
+Each agent runs as an independent FastAPI microservice with its own dedicated documentation:
+
+| Service | Port | Model / Tech | Role & Description | Documentation |
+| :--- | :---: | :--- | :--- | :---: |
+| **Orchestrator** | `8005` | FastAPI / Python | **Central Coordinator**: Triages user requests via `engage` and delegates to appropriate expert agents. | [README](agents/orchestrator/README.md) |
+| **Engage Agent** | `8001` | Gemini 2.5 Pro | **Triage Specialist**: Analyzes user intent to route to `continue`, `filter`, `smart_filter`, or `inspiration_agent`. | [README](agents/engage/README.md) |
+| **Filter Agent** | `8002` | Gemini 2.5 Pro | **Filter Extraction**: Translates natural language into deterministic database parameters (`direct`, `max_price`, `max_stops`). | [README](agents/filter/README.md) |
+| **Smart Filter Agent** | `8003` | Gemini 2.5 Pro + Search | **Semantic Filter**: Evaluates qualitative amenities (WiFi, legroom, aircraft) via contextual reasoning and live Google Search. | [README](agents/filter_smart/README.md) |
+| **Inspiration Agent** | `8007` | Gemini 2.5 Pro | **Discovery Architect**: Suggests destinations and date ranges for open-ended travel requests (*"somewhere sunny in December"*). | [README](agents/inspiration/README.md) |
+| **Flights Search Agent** | `8006` | Gemini 2.5 Flash Lite | **Flight Simulator**: Generates 15 realistic, route-appropriate flight options obeying temporal and timezone logic. | [README](agents/flights_search/README.md) |
+| **JSON Parser Agent** | `8004` | Gemini 2.5 Pro | **Structure Corrector**: Repairs malformed JSON outputs and guarantees strict schema compliance. | [README](agents/json_parser/README.md) |
+| **Frontend** | `5173` | React / Vite | **User Interface**: Flight search exploration view with conversational ChatWidget. | [frontend/](frontend/) |
+
+---
+
+## 📁 Repository Structure
+
+```text
+flights_search/
+├── agents/
+│   ├── engage/              # Intent triage and routing microservice
+│   ├── filter/              # Deterministic parameter extraction microservice
+│   ├── filter_smart/        # Semantic filtering + live Google Search microservice
+│   ├── flights_search/      # Realistic flight search data simulation microservice
+│   ├── inspiration/         # Open-ended travel discovery microservice
+│   ├── json_parser/         # Self-healing JSON syntax & schema correction microservice
+│   └── orchestrator/        # Central FastAPI gateway coordinating the agents
+├── frontend/                # React + Vite frontend application & ChatWidget
+├── tests/                   # Microservice integration and unit tests
+│   ├── engage/
+│   ├── filter/
+│   ├── filter_smart/
+│   ├── flights_search/
+│   ├── inspiration/
+│   ├── json_parser/
+│   └── orchestrator/
+├── utils/                   # Shared logging and formatting utilities
+├── deploy_agent.sh          # Helper script to deploy a single agent to Cloud Run
+├── deploy_agents.sh         # Helper script to deploy all microservices to Cloud Run
+├── deploy_frontend.sh       # Helper script to deploy the React frontend to Cloud Run
+└── requirements.txt         # Root Python dependencies
 ```
 
 ---
 
-## 🤖 Meet the Agents
+## 🚀 Running Locally
 
-### 1. 🔍 Flights Search Agent (`flights_search`)
-The foundation of data simulation in this project.
--   **Role:** Generates a realistic and diverse list of flights based on primary search criteria.
+### 1. Prerequisites
+- **Python >= 3.11**
+- **Node.js >= 18** (for frontend)
+- Google Cloud / Vertex AI credentials configured (or `gcloud auth application-default login`).
 
-### 2. 🤝 Engage Agent (`engage`)
-The primary triage or receptionist for user requests.
--   **Role:** Analyzes user messages alongside conversational history to classify intent.
--   **Decisions:**
-    -   `continue`: Solicits more information.
-    -   `filter`: Standard, hard-constraint filtering.
-    -   `smart_filter`: Semantic, soft-constraint filtering.
-    -   `inspiration_agent`: Hand-off to the Inspiration agent for open-ended destination or date discovery.
-
-### 3. 🔢 Filter Agent (`filter`) — *Translating NL to Deterministic Parameters*
-The **Filter Agent** is a specialized LLM that bridges the gap between natural language and traditional, programmatic databases.
-
--   **Role:** Extracts standard parameters for reliable filtering.
--   **Supported Scopes:** `direct` (direct flights), `max_price`, `max_stops`.
--   **Mechanical Flow:** Instead of filtering data itself (which can risk hallucination), the agent outputs pure JSON parameters (e.g., `filter_type="max_price"`, `filter_value=500`).
--   **Why it's essential:** This allows standard, rule-based database queries to execute the filter *without* relying on LLM vibes, ensuring 100% accurate results.
-
----
-
-### 4. 🧠 Smart Filter Agent (`filter_smart`)
-Handles queries that rigid databases cannot solve (e.g., "I want flights with good WiFi").
--   **Role:** Evaluates "Soft Constraints" using contextual reasoning over the actual flight payload.
-
-### 5. 💡 Inspiration Agent (`inspiration`)
-A creative companion for the indecisive traveler.
--   **Role:** Analyzes requests like "I want to travel somewhere sunny" or "I want to fly in June" and intelligently suggests new destinations and automatically updates the travel parameters context.
-
-### 6. 🛠️ JSON Parser Agent (`json_parser`)
-A specialized structural assistant.
--   **Role:** Validates, structures, and occasionally corrects text chunks out of LLM responses to enforce perfectly-formatted JSON schemas for reliable cross-agent communication.
-
----
-
-## 🔢 The Orchestrator Logic
-
-The `orchestrator` is not an LLM agent; it is a **pure Python/FastAPI service**. It sits directly behind the ChatWidget, sending the user's history and queries to the `engage` agent, and delegating the follow-up logic to the respective expert agents (`filter`, `filter_smart`, or `inspiration`). It returns a structured JSON payload that the frontend can read easily, immediately updating the search inputs on the screen and repopulating new flight listings if instructed.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Python >= 3.11
-- Node.js (for frontend)
-- `GEMINI_API_KEY` environment variable set.
-
-### Installation
-**Backend:**
+### 2. Backend Setup
+Create and activate a virtual environment, then install dependencies:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-**Frontend:**
+### 3. Start Backend Microservices
+Run the microservices in separate terminals (or in the background):
+
+```bash
+# Terminal 1: Engage Agent
+python -m agents.engage.main
+
+# Terminal 2: Filter Agent
+python -m agents.filter.main
+
+# Terminal 3: Smart Filter Agent
+python -m agents.filter_smart.main
+
+# Terminal 4: JSON Parser Agent
+python -m agents.json_parser.main
+
+# Terminal 5: Flights Search Simulator
+python -m agents.flights_search.main
+
+# Terminal 6: Inspiration Agent
+python -m agents.inspiration.main
+
+# Terminal 7: Central Orchestrator
+python -m agents.orchestrator.main
+```
+
+### 4. Start the Frontend
+In a new terminal:
 ```bash
 cd frontend
 npm install
-```
-
-### Running the Services
-Start the backend services as background processes or in separate terminals:
-
-| Service | Port | Command |
-| :--- | :--- | :--- |
-| **Engage Agent** | `8001` | `python -m agents.engage.main` |
-| **Filter Agent** | `8002` | `python -m agents.filter.main` |
-| **Smart Filter Agent** | `8003` | `python -m agents.filter_smart.main` |
-| **JSON Parser Agent** | `8004` | `python -m agents.json_parser.main` |
-| **Orchestrator Core** | `8005` | `python -m agents.orchestrator.main` |
-| **Flights Search Simulator** | `8006` | `python -m agents.flights_search.main` |
-| **Inspiration Agent** | `8007` | `python -m agents.inspiration.main` |
-
-Start the frontend application:
-```bash
-cd frontend
 npm run dev
 ```
-
-### Testing
-You can run tests for each agent or run all integrations via standard `pytest`:
-```bash
-# Run test for a specific agent {agent_name}
-python -m pytest tests/{agent_name}/test.py
-```
-You can also run the agent tests manually via:
-```bash
-python -m tests.{agent_name}.test
-```
-
+Open `http://localhost:5173` in your browser to interact with the flight search engine and chat widget.
 
 ---
-*Developed with ❤️ using Google ADK.*
+
+## 🧪 Testing
+
+You can run automated tests for any microservice using `pytest` or Python:
+
+```bash
+# Run all tests via pytest
+pytest
+
+# Test a specific agent (e.g. Orchestrator or Engage)
+python -m tests.orchestrator.test
+python -m tests.engage.test
+python -m tests.filter.test
+python -m tests.filter_smart.test
+python -m tests.inspiration.test
+python -m tests.json_parser.test
+python -m tests.flights_search.test
+```
+
+---
+
+## ☁️ Deploying to Google Cloud Run
+
+The repository includes preconfigured `cloudbuild.yaml` files and deployment bash scripts to deploy each microservice as a containerized Google Cloud Run service.
+
+### 1. Setup Google Cloud CLI
+Ensure your `gcloud` CLI is logged in and configured with your project:
+```bash
+gcloud auth login
+gcloud config set project [$PROJECT_ID]
+```
+
+### 2. Deploy a Single Microservice
+To deploy or update a specific agent (e.g. `orchestrator` or `filter_smart`):
+```bash
+./deploy_agent.sh <agent_name>
+
+# Examples:
+./deploy_agent.sh orchestrator
+./deploy_agent.sh filter_smart
+./deploy_agent.sh engage
+```
+
+### 3. Deploy All Microservices (Parallel)
+To build and deploy all backend microservices concurrently using Cloud Build:
+```bash
+./deploy_agents.sh
+```
+
+### 4. Deploy Frontend
+To build and deploy the React frontend container to Cloud Run:
+```bash
+./deploy_frontend.sh
+```
+
+### Cloud Run Service Specifications
+- **Region:** `europe-west9`
+- **Platform:** Managed (`--allow-unauthenticated`)
+- **Resources:** 2 CPU, 2Gi RAM
+- **Scaling:** Minimum 1 instance (`--min-instances 1`, `--no-cpu-throttling`)
