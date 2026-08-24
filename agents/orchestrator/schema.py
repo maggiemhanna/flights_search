@@ -88,7 +88,7 @@ class OrchestratorOutput(BaseModel):
     """Output schema for the Orchestrator Agent."""
     agent_response: str = Field(..., description="The response from the agent.")
     agent_decision: Literal["filter", "filter_smart", "inspiration_agent", "continue"] = Field(..., description="The decision of the agent.")
-    filter_response: Optional[str] = Field(None, description="The response from the filter agent.")
+    filter_response: Optional[str] = Field(None, description="The response from the filter or filter_smart agent.")
     filter_type: Optional[str] = Field(None, description="The type of filter to apply.")
     filter_value: Optional[int] = Field(None, description="The value of the filter to apply.")
     flights_output: Optional[List[Flight]] = Field(None, description="The flights filtered by the smart filter.")
