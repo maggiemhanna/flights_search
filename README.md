@@ -208,6 +208,19 @@ git checkout main
 3. **Configure Agent `env.yaml` Files:**
    Make sure all individual `agents/<agent>/env.yaml` files have your `GOOGLE_CLOUD_PROJECT` and `GOOGLE_CLOUD_LOCATION` set before deploying container images.
 
+4. **Update `cloudbuild.yaml` Files for Agents & Frontend:**
+   Each microservice agent and the frontend contains a `cloudbuild.yaml` configuration file specifying container image builds and Cloud Run deployment parameters. Update the Google Cloud **Project ID** in the Container Registry image tags (`gcr.io/<YOUR_GCP_PROJECT_ID>/...`) across all `cloudbuild.yaml` files:
+   - `agents/engage/cloudbuild.yaml`
+   - `agents/filter/cloudbuild.yaml`
+   - `agents/filter_smart/cloudbuild.yaml`
+   - `agents/flights_search/cloudbuild.yaml`
+   - `agents/inspiration/cloudbuild.yaml`
+   - `agents/json_parser/cloudbuild.yaml`
+   - `agents/orchestrator/cloudbuild.yaml`
+   - `frontend/cloudbuild.yaml`
+
+   Ensure all image references (e.g., `gcr.io/<YOUR_GCP_PROJECT_ID>/<service-name>`) in the build, push, and deploy steps match your GCP Project ID.
+
 ### 3. Deploy Backend Microservices to Cloud Run
 You can deploy microservices individually or all together in parallel:
 
