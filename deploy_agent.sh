@@ -16,9 +16,21 @@ if [ ! -f "agents/$AGENT_NAME/cloudbuild.yaml" ]; then
   exit 1
 fi
 
-# Explicitly set the project for Google Cloud CLI
-export PROJECT_ID="vertexai-explore-437408"
-export SERVICE_ACCOUNT="874751466618-compute@developer.gserviceaccount.com"
+# Check if root env.yaml exists
+if [ ! -f "env.yaml" ]; then
+  echo "❌ Error: env.yaml not found in root directory."
+  exit 1
+fi
+
+# Read PROJECT_ID and SERVICE_ACCOUNT from env.yaml
+export PROJECT_ID=$(awk -F': ' '/PROJECT_ID:/ {gsub(/[" '\''\r]/, "", $2); print $2}' env.yaml)
+export SERVICE_ACCOUNT=$(awk -F': ' '/SERVICE_ACCOUNT:/ {gsub(/[" '\''\r]/, "", $2); print $2}' env.yaml)
+
+if [ -z "$PROJECT_ID" ] || [ -z "$SERVICE_ACCOUNT" ]; then
+  echo "❌ Error: PROJECT_ID or SERVICE_ACCOUNT not found in env.yaml"
+  exit 1
+fi
+
 export CLOUDSDK_CORE_PROJECT="$PROJECT_ID"
 export AGENT_NAME
 
