@@ -63,7 +63,7 @@ function App() {
     };
 
     try {
-      const response = await fetch('https://flights-search-service-874751466618.europe-west9.run.app/run-flights-search', {
+      const response = await fetch('http://127.0.0.1:8006/run-flights-search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

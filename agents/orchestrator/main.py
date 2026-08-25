@@ -20,19 +20,19 @@ logger = setup_logging(name=__name__)
 import requests
 
 def call_engage_api(api_inputs):
-    response = requests.post("https://engage-service-874751466618.europe-west9.run.app/run-engage", json=api_inputs)
+    response = requests.post("http://127.0.0.1:8001/run-engage", json=api_inputs)
     return response.json()
 
 def call_filter_api(api_inputs):
-    response = requests.post("https://filter-service-874751466618.europe-west9.run.app/run-filter", json=api_inputs)
+    response = requests.post("http://127.0.0.1:8002/run-filter", json=api_inputs)
     return response.json()
 
 def call_smart_filter_api(api_inputs):
-    response = requests.post("https://filter-smart-service-874751466618.europe-west9.run.app/run-filter-smart", json=api_inputs)
+    response = requests.post("http://127.0.0.1:8003/run-filter-smart", json=api_inputs)
     return response.json()
 
 def call_inspiration_agent_api(api_inputs):
-    response = requests.post("https://inspiration-service-874751466618.europe-west9.run.app/run-inspiration", json=api_inputs)
+    response = requests.post("http://127.0.0.1:8007/run-inspiration", json=api_inputs)
     return response.json()
 
 # --- FastAPI Application ---

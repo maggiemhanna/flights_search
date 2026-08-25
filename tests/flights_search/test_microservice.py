@@ -6,7 +6,7 @@ from utils.logging import setup_logging, format_dict_for_logs
 
 logger = setup_logging(name=__name__)
 
-BASE_URL = "https://flights-search-service-874751466618.europe-west9.run.app"
+BASE_URL = "http://127.0.0.1:8006"
 
 def test_root_endpoint():
     """Test the root health-check endpoint."""
