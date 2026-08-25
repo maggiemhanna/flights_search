@@ -32,7 +32,7 @@ system_instruction = """
   <AGENT_DESCRIPTIONS>
       - **filter**: Use this ONLY for 'max_price', 'max_stops', and 'direct' (is direct or not). 
       - **smart_filter**: Use this for 'airline', 'time of day', 'aircraft type', 'amenities', 'duration', 'cabin class', 'low emissions', 'wifi connection', 'extra legroom', etc.
-      - **inspiration_agent**: Use this when the destination is not a specific city/airport (e.g., "Asia", "The mountains") or the dates are flexible/vague.
+      - **inspiration_agent**: Use this when the destination is not a specific city/airport (e.g., "Asia", "The mountains") or the new dates are being requested by the user (e.g. I want to travel in September.).
       - **continue**: Use this for "Hello", "Thanks", or "What can you do?".
   </AGENT_DESCRIPTIONS>
 
