@@ -71,6 +71,7 @@ flights_search/
 ├── deploy_agent.sh          # Helper script to deploy a single agent to Cloud Run
 ├── deploy_agents.sh         # Helper script to deploy all microservices to Cloud Run
 ├── deploy_frontend.sh       # Helper script to deploy the React frontend to Cloud Run
+├── env.yaml                 # Root deployment config (PROJECT_ID and SERVICE_ACCOUNT)
 └── requirements.txt         # Root Python dependencies
 ```
 
@@ -189,14 +190,23 @@ In the `main` branch, each microservice is deployed as an independent container 
 git checkout main
 ```
 
-### 2. Setup Google Cloud CLI & Environment
-Ensure your `gcloud` CLI is logged in and configured with your target project:
-```bash
-gcloud auth login
-gcloud config set project [$PROJECT_ID]
-```
+### 2. Setup Google Cloud CLI & Deployment Environment
+1. Ensure your `gcloud` CLI is logged in and configured with your target project:
+   ```bash
+   gcloud auth login
+   gcloud config set project [$PROJECT_ID]
+   ```
 
-Make sure all `agents/<agent>/env.yaml` files have your `GOOGLE_CLOUD_PROJECT` and `GOOGLE_CLOUD_LOCATION` set before deploying container images.
+2. **Configure root `env.yaml`:**
+   Before running any deployment scripts (`deploy_agent.sh`, `deploy_agents.sh`, `deploy_frontend.sh`), update the root `env.yaml` file with your Google Cloud **Project ID** and **Compute Service Account**:
+   ```yaml
+   PROJECT_ID: "<YOUR_GCP_PROJECT_ID>"
+   SERVICE_ACCOUNT: "<YOUR_SERVICE_ACCOUNT_EMAIL>"
+   ```
+   *(e.g., `<PROJECT_NUMBER>-compute@developer.gserviceaccount.com`)*
+
+3. **Configure Agent `env.yaml` Files:**
+   Make sure all individual `agents/<agent>/env.yaml` files have your `GOOGLE_CLOUD_PROJECT` and `GOOGLE_CLOUD_LOCATION` set before deploying container images.
 
 ### 3. Deploy Backend Microservices to Cloud Run
 You can deploy microservices individually or all together in parallel:
