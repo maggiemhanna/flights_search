@@ -103,25 +103,25 @@ Run each agent in a separate terminal (or in background processes):
 
 ```bash
 # Terminal 1: Engage Agent (Port 8001)
-python -m agents.engage.main
+python3 -m agents.engage.main
 
 # Terminal 2: Filter Agent (Port 8002)
-python -m agents.filter.main
+python3 -m agents.filter.main
 
 # Terminal 3: Smart Filter Agent (Port 8003)
-python -m agents.filter_smart.main
+python3 -m agents.filter_smart.main
 
 # Terminal 4: JSON Parser Agent (Port 8004)
-python -m agents.json_parser.main
+python3 -m agents.json_parser.main
 
 # Terminal 5: Flights Search Simulator (Port 8006)
-python -m agents.flights_search.main
+python3 -m agents.flights_search.main
 
 # Terminal 6: Inspiration Agent (Port 8007)
-python -m agents.inspiration.main
+python3 -m agents.inspiration.main
 
 # Terminal 7: Central Orchestrator Gateway (Port 8005)
-python -m agents.orchestrator.main
+python3 -m agents.orchestrator.main
 ```
 
 ### 4. Start the Frontend
