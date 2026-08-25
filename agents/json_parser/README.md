@@ -41,8 +41,6 @@ The **JSON Parser Agent** is a specialized structural assistant microservice bui
 | **[`schema.py`](schema.py)** | Defines Pydantic models for data contracts: `Flight`, `JSONParserInput`, and `JSONParserOutput`. |
 | **[`env.yaml`](env.yaml)** | Configuration file containing Vertex AI / Google Cloud project settings and API flags. |
 | **[`requirements.txt`](requirements.txt)** | Python dependencies required by this service (e.g., `fastapi`, `uvicorn`, `google-adk`, `google-genai`, `pydantic`, `PyYAML`). |
-| **[`Dockerfile`](Dockerfile)** | Container build definition based on `python:3.11-slim` for containerizing the service and running Uvicorn on port `8080` (or dynamic `$PORT`). |
-| **[`cloudbuild.yaml`](cloudbuild.yaml)** | Google Cloud Build pipeline specification to build the container, push to Google Container Registry (GCR), and deploy to Google Cloud Run in `europe-west9`. |
 | **[`__init__.py`](__init__.py)** | Marks the directory as a Python package. |
 
 ---
@@ -150,27 +148,3 @@ pytest tests/json_parser/test.py
 # Or running the test script directly
 python -m tests.json_parser.test
 ```
-
----
-
-## 🐳 Deployment (Docker & Cloud Run)
-
-### Local Docker Run
-```bash
-# Build from project root
-docker build -t json-parser-service -f agents/json_parser/Dockerfile .
-
-# Run container
-docker run -p 8004:8080 -e PORT=8080 json-parser-service
-```
-
-### Google Cloud Run Deployment
-Using Google Cloud Build (`cloudbuild.yaml`):
-```bash
-gcloud builds submit --config=agents/json_parser/cloudbuild.yaml .
-```
-Deploys to Cloud Run with:
-- **Region:** `europe-west9`
-- **Memory:** `2Gi`
-- **CPU:** `2`
-- **Min Instances:** `1` (no CPU throttling)

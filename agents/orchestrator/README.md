@@ -49,8 +49,6 @@ The **Orchestrator Service** is the central coordination engine of the multi-age
 | **[`main.py`](main.py)** | The core FastAPI application. Implements CORS middleware, microservice HTTP clients (`call_engage_api`, `call_filter_api`, `call_smart_filter_api`, `call_inspiration_agent_api`), routing logic, and exposes REST endpoints (`/` and `/run-orchestrator`). Runs Uvicorn on port `8005` when executed directly. |
 | **[`schema.py`](schema.py)** | Defines Pydantic models for data contracts: `Flight`, `FlightParams`, `OrchestratorInput`, and `OrchestratorOutput`. |
 | **[`requirements.txt`](requirements.txt)** | Python dependencies required by the orchestrator service (e.g., `fastapi`, `uvicorn`, `pydantic`, `requests`, `PyYAML`, `coloredlogs`). |
-| **[`Dockerfile`](Dockerfile)** | Container build definition based on `python:3.11-slim` for containerizing the service and running Uvicorn on port `8080` (or dynamic `$PORT`). |
-| **[`cloudbuild.yaml`](cloudbuild.yaml)** | Google Cloud Build pipeline specification to build the container, push to Google Container Registry (GCR), and deploy to Google Cloud Run in `europe-west9`. |
 
 ---
 
@@ -194,27 +192,3 @@ pytest tests/orchestrator/test.py
 # Or running the test script directly
 python -m tests.orchestrator.test
 ```
-
----
-
-## 🐳 Deployment (Docker & Cloud Run)
-
-### Local Docker Run
-```bash
-# Build from project root
-docker build -t orchestrator-service -f agents/orchestrator/Dockerfile .
-
-# Run container
-docker run -p 8005:8080 -e PORT=8080 orchestrator-service
-```
-
-### Google Cloud Run Deployment
-Using Google Cloud Build (`cloudbuild.yaml`):
-```bash
-gcloud builds submit --config=agents/orchestrator/cloudbuild.yaml .
-```
-Deploys to Cloud Run with:
-- **Region:** `europe-west9`
-- **Memory:** `2Gi`
-- **CPU:** `2`
-- **Min Instances:** `1` (no CPU throttling)

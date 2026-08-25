@@ -41,8 +41,6 @@ The **Engage Agent** is the triage and intent classification microservice built 
 | **[`schema.py`](schema.py)** | Defines Pydantic models for data contracts: `EngageInput` and `EngageOutput`. |
 | **[`env.yaml`](env.yaml)** | Configuration file containing Vertex AI / Google Cloud project settings and API flags. |
 | **[`requirements.txt`](requirements.txt)** | Python dependencies required by this service (e.g., `fastapi`, `uvicorn`, `google-adk`, `google-genai`, `pydantic`, `PyYAML`). |
-| **[`Dockerfile`](Dockerfile)** | Container build definition based on `python:3.11-slim` for containerizing the service and running Uvicorn on port `8080` (or dynamic `$PORT`). |
-| **[`cloudbuild.yaml`](cloudbuild.yaml)** | Google Cloud Build pipeline specification to build the container, push to Google Container Registry (GCR), and deploy to Google Cloud Run in `europe-west9`. |
 | **[`__init__.py`](__init__.py)** | Marks the directory as a Python package. |
 
 ---
@@ -139,27 +137,3 @@ pytest tests/engage/test.py
 # Or running the test script directly
 python -m tests.engage.test
 ```
-
----
-
-## 🐳 Deployment (Docker & Cloud Run)
-
-### Local Docker Run
-```bash
-# Build from project root
-docker build -t engage-service -f agents/engage/Dockerfile .
-
-# Run container
-docker run -p 8001:8080 -e PORT=8080 engage-service
-```
-
-### Google Cloud Run Deployment
-Using Google Cloud Build (`cloudbuild.yaml`):
-```bash
-gcloud builds submit --config=agents/engage/cloudbuild.yaml .
-```
-Deploys to Cloud Run with:
-- **Region:** `europe-west9`
-- **Memory:** `2Gi`
-- **CPU:** `2`
-- **Min Instances:** `1` (no CPU throttling)

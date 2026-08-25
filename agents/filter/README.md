@@ -43,8 +43,6 @@ The **Filter Agent** is a specialized microservice built with **Google ADK (Agen
 | **[`schema.py`](schema.py)** | Defines Pydantic models for data contracts: `FilterInput` and `FilterOutput`. |
 | **[`env.yaml`](env.yaml)** | Configuration file containing Vertex AI / Google Cloud project settings and API flags. |
 | **[`requirements.txt`](requirements.txt)** | Python dependencies required by this service (e.g., `fastapi`, `uvicorn`, `google-adk`, `google-genai`, `pydantic`, `PyYAML`). |
-| **[`Dockerfile`](Dockerfile)** | Container build definition based on `python:3.11-slim` for containerizing the service and running Uvicorn on port `8080` (or dynamic `$PORT`). |
-| **[`cloudbuild.yaml`](cloudbuild.yaml)** | Google Cloud Build pipeline specification to build the container, push to Google Container Registry (GCR), and deploy to Google Cloud Run in `europe-west9`. |
 | **[`__init__.py`](__init__.py)** | Marks the directory as a Python package. |
 
 ---
@@ -145,27 +143,3 @@ pytest tests/filter/test.py
 # Or running the test script directly
 python -m tests.filter.test
 ```
-
----
-
-## 🐳 Deployment (Docker & Cloud Run)
-
-### Local Docker Run
-```bash
-# Build from project root
-docker build -t filter-service -f agents/filter/Dockerfile .
-
-# Run container
-docker run -p 8002:8080 -e PORT=8080 filter-service
-```
-
-### Google Cloud Run Deployment
-Using Google Cloud Build (`cloudbuild.yaml`):
-```bash
-gcloud builds submit --config=agents/filter/cloudbuild.yaml .
-```
-Deploys to Cloud Run with:
-- **Region:** `europe-west9`
-- **Memory:** `2Gi`
-- **CPU:** `2`
-- **Min Instances:** `1` (no CPU throttling)
