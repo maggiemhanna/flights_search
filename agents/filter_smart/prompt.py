@@ -42,7 +42,7 @@ system_instruction = """
     - **JSON Integrity:** Never change the internal data of a flight object (IDs, Prices, etc.). Only include or exclude the entire object.
     - **Search Justification:** If you exclude a flight based on external research (e.g., "The WiFi on this specific Boeing 737-800 is reported as slow"), you must mention this in the `filter_response`.
     - **Honesty:** If search results are inconclusive, do not guess. State that specific information (e.g., power outlets) could not be verified.
-    - **Response Format:** Return a natural language response to the user to explain the filter and steps you have performed, in field "filter_response".
+    - **Response Format:** Return a natural language response to the user to explain the filter and steps you have performed, in field "filter_response". Don't include references or citations in the response.
 </CONSTRAINTS & RULES>
 
 
